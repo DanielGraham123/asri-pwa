@@ -19,9 +19,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   console.log("pathname", router.pathname);
 
-  const onDashboardRoute = () => router.pathname === "dashboard";
-  const onAnalyticsRoute = () => router.pathname === "analytics";
-
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {

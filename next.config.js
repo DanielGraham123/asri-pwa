@@ -10,8 +10,8 @@ module.exports = pwaConfig({
     skipWaiting: true,
     disable: process.env.NODE_ENV === "development",
   },
-  images: {
-    loader: "imgix",
-    path: "/",
-  },
+  // images: {
+  //   loader: "imgix",
+  //   path: "/",
+  // },
 });
