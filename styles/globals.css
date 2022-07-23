@@ -10,4 +10,10 @@
 @import "additional-styles/flatpickr.css";
 @import "additional-styles/theme.css";
 
+@layer components {
+  .bgImage {
+    @apply z-10 bg-no-repeat bg-bgIndex bg-cover w-full;
+  }
+}
+
 @tailwind utilities;

@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "auth-image": "url('/assets/auth-image.jpg')",
+        bgIndex: "url('/auth-image2.jpg')",
       },
       boxShadow: {
         DEFAULT:
