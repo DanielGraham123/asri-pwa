@@ -7,6 +7,7 @@ import bgIndex from "../assets/auth-image.jpg";
 import logo from "../public/icon-192x192.png";
 
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
@@ -23,15 +24,19 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-bgIndex">
+    <div className="bg-bgIndex bg-cover bg-center bg-no-repeat w-full">
       <div className="w-full ">
         <div className="min-h-screen h-full flex flex-col after:flex-1">
           <div className="flex-1">
-            <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-              <Image src={logo} width="50" height="50" />
+            <div className="flex items-center justify-center h-16 px-4 sm:px-6 lg:px-8">
+              <Link href="/">
+                <a className="text-gray-300 underline pt-36 text-sm">
+                  Automatic System For Recognition and Identification
+                </a>
+              </Link>
             </div>
           </div>
-          <div className="shadow-2xl max-w-sm w-3/4 mx-auto px-6 py-8">
+          <div className="shadow-2xl max-w-sm w-3/4 mx-auto px-6 py-8 mt-5">
             <h1 className="text-3xl text-gray-300 font-bold mb-6 flex items-center justify-between">
               <span>Welcome back!</span>
               <Image

@@ -103,7 +103,7 @@ export default function Dashboard() {
             </div>
           </main>
 
-          <Banner />
+          <Banner message={"Welcome, Daniel"} emoji={"👋"} />
         </div>
       </div>
     </>
