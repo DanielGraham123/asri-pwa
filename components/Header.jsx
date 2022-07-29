@@ -3,6 +3,7 @@ import SearchModal from "./header/SearchModal";
 import Notifications from "./header/Notifications";
 import Help from "./header/Help";
 import UserMenu from "./header/UserMenu";
+import Identification from "./header/Identification";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
@@ -12,6 +13,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 -mb-px">
           {/* Header: Left side */}
+
           <div className="flex">
             {/* Hamburger button */}
             <button
@@ -31,10 +33,13 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                 <rect x="4" y="17" width="16" height="2" />
               </svg>
             </button>
+            <h2 className="text-2xl ml-4 md:ml-0">Dashboard</h2>
           </div>
 
           {/* Header: Right side */}
           <div className="flex items-center">
+            <Identification />
+
             <button
               className={`w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full ml-3 ${
                 searchModalOpen && "bg-slate-200"
@@ -61,6 +66,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                 />
               </svg>
             </button>
+
             <SearchModal
               id="search-modal"
               searchId="search"

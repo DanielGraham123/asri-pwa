@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        bgIndex: "url('/auth-image2.jpg')",
+        bgIndex: "url('/asri-bg.jpg')",
       },
       boxShadow: {
         DEFAULT:
