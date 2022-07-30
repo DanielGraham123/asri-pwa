@@ -7,6 +7,7 @@ import * as faceapi from "face-api.js";
 import idIcon from "../../assets/faceid.png";
 
 import { GoLinkExternal } from "react-icons/go";
+import { useTopLoader } from "../../contexts/LoadingContext";
 
 const Identification = () => {
   const [IdModal, setIdModal] = useState(false);
@@ -24,6 +25,8 @@ const Identification = () => {
 
   const faceIdModal = useRef(null);
   const faceIdTrigger = useRef(null);
+
+  const { setTopLoading, setComplete, topLoading } = useTopLoader();
 
   const labels = [
     {
@@ -58,6 +61,8 @@ const Identification = () => {
 
   // loadModels function
   useEffect(() => {
+    setTopLoading(true);
+
     const loadModels = () => {
       Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
@@ -72,6 +77,16 @@ const Identification = () => {
     };
 
     loadModels();
+  }, []);
+
+  useEffect(() => {
+    console.log("loading labeled images", topLoading);
+
+    if (labeledFaceDescriptors !== null) {
+      setComplete(true);
+      setTopLoading(false);
+      return;
+    }
   }, []);
 
   //   start Video Footage function
@@ -233,6 +248,7 @@ const Identification = () => {
       )
         return;
       setIdModal(false);
+      closeCamera();
     };
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);

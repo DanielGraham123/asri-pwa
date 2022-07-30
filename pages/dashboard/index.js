@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Banner,
   DashboardAvatars,
@@ -23,9 +23,24 @@ import {
 } from "../../components";
 
 import Head from "next/head";
+import TopLoader from "react-top-loading-bar";
+import { useTopLoader } from "../../contexts/LoadingContext";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toploadingRef = useRef();
+  const { topLoading, complete } = useTopLoader;
+
+  useEffect(() => {
+    if (topLoading === true) {
+      toploadingRef.current.continuousStart();
+      console.log("complete:", complete);
+    } else {
+      !complete
+        ? toploadingRef.current.complete()
+        : toploadingRef.current.continuousStart();
+    }
+  }, [topLoading]);
 
   return (
     <>
@@ -34,6 +49,8 @@ export default function Dashboard() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex h-screen overflow-hidden">
+        <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
+
         {/* Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -49,56 +66,46 @@ export default function Dashboard() {
 
               {/* Dashboard actions */}
               <div className="sm:flex sm:justify-between sm:items-center mb-8">
-                {/* Left: Avatars */}
-                <DashboardAvatars />
-
+                {/* Add view button */}
+                <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                  <svg
+                    className="w-4 h-4 fill-current opacity-50 shrink-0"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
+                  </svg>
+                  <span className="hidden xs:block ml-2">Add New Patient</span>
+                </button>{" "}
+                {/* should redirect to the patient record system*/}
                 {/* Right: Actions */}
                 <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
                   {/* Filter button */}
                   <FilterButton />
                   {/* Datepicker built with flatpickr */}
                   <Datepicker />
-                  {/* Add view button */}
-                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
-                    <svg
-                      className="w-4 h-4 fill-current opacity-50 shrink-0"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
-                    </svg>
-                    <span className="hidden xs:block ml-2">Add view</span>
-                  </button>
                 </div>
               </div>
 
               {/* Cards */}
               <div className="grid grid-cols-12 gap-6">
-                {/* Line chart (Acme Plus) */}
+                {/* Line chart (Consultations) */}
                 <DashboardCard01 />
-                {/* Line chart (Acme Advanced) */}
+                {/* Line chart (Appointments) */}
                 <DashboardCard02 />
-                {/* Line chart (Acme Professional) */}
+                {/* Line chart (Patients) */}
                 <DashboardCard03 />
-                {/* Bar chart (Direct vs Indirect) */}
-                <DashboardCard04 />
-                {/* Line chart (Real Time Value) */}
-                <DashboardCard05 />
-                {/* Doughnut chart (Top Countries) */}
+
+                {/* Doughnut chart (Treatments) */}
                 <DashboardCard06 />
-                {/* Table (Top Channels) */}
-                <DashboardCard07 />
-                {/* Line chart (Sales Over Time) */}
-                <DashboardCard08 />
-                {/* Stacked bar chart (Sales VS Refunds) */}
-                <DashboardCard09 />
-                {/* Card (Customers) */}
+                {/* Card (Recent Patients) */}
                 <DashboardCard10 />
+
                 {/* Card (Reasons for Refunds) */}
-                <DashboardCard11 />
+                {/* <DashboardCard11 /> */}
                 {/* Card (Recent Activity) */}
-                <DashboardCard12 />
+                {/* <DashboardCard12 /> */}
                 {/* Card (Income/Expenses) */}
-                <DashboardCard13 />
+                {/* <DashboardCard13 /> */}
               </div>
             </div>
           </main>

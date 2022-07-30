@@ -6,10 +6,10 @@ import { tailwindConfig } from "../../utils/Utils";
 
 function DashboardCard06() {
   const chartData = {
-    labels: ["United States", "Italy", "Other"],
+    labels: ["Cardiology", "Surgery", "Brain Cancer"],
     datasets: [
       {
-        label: "Top Countries",
+        label: "Treatment Frequency",
         data: [35, 30, 35],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],
@@ -29,7 +29,7 @@ function DashboardCard06() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Top Countries</h2>
+        <h2 className="font-semibold text-slate-800">Treatment Frequency</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
