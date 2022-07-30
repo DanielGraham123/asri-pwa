@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRef } from "react";
 import { SignIn } from "../components";
+import { TopLoadingProvider, useTopLoader } from "../contexts/LoadingContext";
 
 export default function Home() {
   return (

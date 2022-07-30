@@ -5,6 +5,7 @@ import UserAvatar from "../../assets/user-avatar-32.png";
 import Image from "next/image";
 
 import DashLink from "../dashboard/DashLink";
+import profileUser from "../../assets/user-36-02.jpg";
 
 const UserMenu = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -48,14 +49,14 @@ const UserMenu = () => {
       >
         <Image
           className="w-8 h-8 rounded-full"
-          src={UserAvatar}
+          src={profileUser}
           width="32"
           height="32"
           alt="User"
         />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">
-            Acme Inc.
+            Dr. John Doe
           </span>
           <svg
             className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
@@ -82,8 +83,8 @@ const UserMenu = () => {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800">Acme Inc.</div>
-            <div className="text-xs text-slate-500 italic">Administrator</div>
+            <div className="font-medium text-slate-800">John Doe</div>
+            <div className="text-xs text-slate-500 italic">Doctor</div>
           </div>
           <ul>
             <li>

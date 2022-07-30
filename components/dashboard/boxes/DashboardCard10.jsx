@@ -13,48 +13,53 @@ function DashboardCard10() {
       id: "0",
       image: Image01,
       name: "Alex Shatov",
-      email: "alexshatov@gmail.com",
-      location: "🇺🇸",
-      spent: "$2,890.66",
+      treatment: "Malaria",
+      phone: "651523013",
+      date: "23/08/2022",
+      location: "Molyko, Buea",
     },
     {
       id: "1",
       image: Image02,
       name: "Philip Harbach",
-      email: "philip.h@gmail.com",
-      location: "🇩🇪",
-      spent: "$2,767.04",
+      treatment: "Malaria",
+      phone: "651523013",
+      date: "23/08/2022",
+      location: "Molyko, Buea",
     },
     {
       id: "2",
       image: Image03,
       name: "Mirko Fisuk",
-      email: "mirkofisuk@gmail.com",
-      location: "🇫🇷",
-      spent: "$2,996.00",
+      treatment: "Malaria",
+      phone: "651523013",
+      date: "23/08/2022",
+      location: "Molyko, Buea",
     },
     {
       id: "3",
       image: Image04,
       name: "Olga Semklo",
-      email: "olga.s@cool.design",
-      location: "🇮🇹",
-      spent: "$1,220.66",
+      treatment: "Fever",
+      phone: "651523013",
+      date: "23/08/2022",
+      location: "Molyko, Buea",
     },
     {
       id: "4",
       image: Image05,
       name: "Burak Long",
-      email: "longburak@gmail.com",
-      location: "🇬🇧",
-      spent: "$1,890.66",
+      treatment: "Malaria",
+      phone: "651523013",
+      date: "23/08/2022",
+      location: "Molyko, Buea",
     },
   ];
 
   return (
-    <div className="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
+    <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Customers</h2>
+        <h2 className="font-semibold text-slate-800">Recent Patients</h2>
       </header>
       <div className="p-3">
         {/* Table */}
@@ -67,13 +72,16 @@ function DashboardCard10() {
                   <div className="font-semibold text-left">Name</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Email</div>
+                  <div className="font-semibold text-left">Treatment</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Spent</div>
+                  <div className="font-semibold text-left">Phone</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-center">Country</div>
+                  <div className="font-semibold text-left">Date</div>
+                </th>
+                <th className="p-2 whitespace-nowrap">
+                  <div className="font-semibold text-left">Location</div>
                 </th>
               </tr>
             </thead>
@@ -99,15 +107,18 @@ function DashboardCard10() {
                       </div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">{customer.email}</div>
+                      <div className="text-left">{customer.treatment}</div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        {customer.spent}
+                      <div className="text-left font-medium text-pink-700">
+                        {customer.phone}
                       </div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
-                      <div className="text-lg text-center">
+                      <div className="text-sm text-left">{customer.date}</div>
+                    </td>
+                    <td className="p-2 whitespace-nowrap ">
+                      <div className="text-sm text-left text-emerald-500">
                         {customer.location}
                       </div>
                     </td>
