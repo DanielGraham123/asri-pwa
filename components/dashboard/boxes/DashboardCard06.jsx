@@ -4,7 +4,7 @@ import DoughnutChart from "../../charts/DoughnutChart";
 // Import utilities
 import { tailwindConfig } from "../../utils/Utils";
 
-function DashboardCard06() {
+export default function DashboardCard06() {
   const chartData = {
     labels: ["Cardiology", "Surgery", "Brain Cancer"],
     datasets: [
@@ -37,5 +37,3 @@ function DashboardCard06() {
     </div>
   );
 }
-
-export default DashboardCard06;
