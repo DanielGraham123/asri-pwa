@@ -9,15 +9,14 @@ import {
   FilterButton,
   WelcomeBanner,
 } from "../../components";
-
 import DashboardLayout from "../../layouts/dashboardLayout";
 
 export default function Index() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+    <>
+      {" "}
       {/* Welcome banner */}
       <WelcomeBanner />
-
       {/* Dashboard actions */}
       <div className="sm:flex sm:justify-between sm:items-center mb-8">
         {/* Add view button */}
@@ -39,7 +38,6 @@ export default function Index() {
           <Datepicker />
         </div>
       </div>
-
       {/* Cards */}
       <div className="grid grid-cols-12 gap-6">
         {/* Line chart (Consultations) */}
@@ -54,10 +52,14 @@ export default function Index() {
         {/* Card (Recent Patients) */}
         <DashboardCard10 />
 
+        {/* Card (Reasons for Refunds) */}
+        {/* <DashboardCard11 /> */}
         {/* Card (Recent Activity) */}
         {/* <DashboardCard12 /> */}
+        {/* Card (Income/Expenses) */}
+        {/* <DashboardCard13 /> */}
       </div>
-    </div>
+    </>
   );
 }
 

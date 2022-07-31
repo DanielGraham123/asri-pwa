@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTopLoader } from "../contexts/LoadingContext";
-import Head from "next/head";
 import TopLoader from "react-top-loading-bar";
+import Head from "next/head";
 import { Banner, Header, Sidebar } from "../components";
 
-function DashboardLayout({ children }) {
+export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toploadingRef = useRef();
   const { topLoading, complete } = useTopLoader;
@@ -23,7 +23,7 @@ function DashboardLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Title</title>
+        <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex h-screen overflow-hidden">
@@ -33,11 +33,15 @@ function DashboardLayout({ children }) {
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         {/* Content area */}
-        <div className="relative flex flex-col flex-1 overflow-y- overflow-x-hidden">
+        <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
           {/*  Site header */}
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-          <main className="">{children}</main>
+          <main>
+            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+              {children}
+            </div>
+          </main>
 
           <Banner message={"Welcome, Daniel"} emoji={"👋"} />
         </div>
@@ -45,5 +49,3 @@ function DashboardLayout({ children }) {
     </>
   );
 }
-
-export default DashboardLayout;
