@@ -4,6 +4,7 @@ import { TopLoadingProvider } from "../contexts/LoadingContext";
 import TopLoader from "react-top-loading-bar";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import EmptyLayout from "../layouts/emptyLayout";
 
 function MyApp({ Component, pageProps }) {
   const toploadingRef = useRef(null);
@@ -45,10 +46,14 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
+  const Layout = Component.Layout || EmptyLayout;
+
   return (
     <TopLoadingProvider>
       <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </TopLoadingProvider>
   );
 }
