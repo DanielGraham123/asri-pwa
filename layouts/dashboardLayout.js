@@ -4,7 +4,7 @@ import Head from "next/head";
 import TopLoader from "react-top-loading-bar";
 import { Banner, Header, Sidebar } from "../components";
 
-function DashboardLayout({ children }) {
+function DashboardLayout({ children, title }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toploadingRef = useRef();
   const { topLoading, complete } = useTopLoader;
@@ -23,7 +23,7 @@ function DashboardLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Dashboard</title>
+        <title>{title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex h-screen overflow-hidden">

@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "chromium-args": "--mixed-context",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
