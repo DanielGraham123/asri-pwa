@@ -6,6 +6,7 @@ import Image05 from "../../assets/user-36-09.jpg";
 
 export default [
   {
+    id: 2323,
     name: "Jane Cooper",
     phone: "jane.cooper@example.com",
     title: "Regional Paradigm Technician",
@@ -16,6 +17,7 @@ export default [
     image: Image01,
   },
   {
+    id: 2523,
     name: "Cody Fisher",
     phone: "cody.fisher@example.com",
     title: "Product Directives Officer",
@@ -26,6 +28,7 @@ export default [
     image: Image02,
   },
   {
+    id: 2353,
     name: "Esther Howard",
     phone: "esther.howard@example.com",
     title: "Forward Response Developer",
@@ -36,6 +39,7 @@ export default [
     image: Image03,
   },
   {
+    id: 2326,
     name: "Jenny Wilson",
     phone: "jenny.wilson@example.com",
     title: "Central Security Manager",
@@ -46,6 +50,7 @@ export default [
     image: Image04,
   },
   {
+    id: 2327,
     name: "Kristin Watson",
     phone: "kristin.watson@example.com",
     title: "Lean Implementation Liaison",
@@ -56,6 +61,7 @@ export default [
     image: Image05,
   },
   // {
+  // id: 2313
   //   name: "Cameron Williamson",
   //   phone: "cameron.williamson@example.com",
   //   title: "Internal Applications Engineer",
