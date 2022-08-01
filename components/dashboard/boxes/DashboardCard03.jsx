@@ -47,9 +47,9 @@ function DashboardCard03() {
         ],
         fill: true,
         backgroundColor: `rgba(${hexToRGB(
-          tailwindConfig().theme.colors.blue[500]
+          tailwindConfig().theme.colors.orange[900]
         )}, 0.08)`,
-        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderColor: tailwindConfig().theme.colors.red[500],
         borderWidth: 2,
         tension: 0,
         pointRadius: 0,
@@ -63,7 +63,7 @@ function DashboardCard03() {
           689, 562, 477, 477, 477, 477, 458, 314, 430, 378, 430, 498, 642, 350,
           145, 145, 354, 260, 188, 188, 300, 300, 282, 364, 660, 554,
         ],
-        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderColor: tailwindConfig().theme.colors.slate[200],
         borderWidth: 2,
         tension: 0,
         pointRadius: 0,
@@ -75,11 +75,12 @@ function DashboardCard03() {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-amber-400 shadow-lg rounded-sm border border-slate-200">
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
-          {/* Icon */}
-          <Image src={Icon} width="32" height="32" alt="Icon 03" />
+          <h2 className="text-lg font-semibold text-slate-800 mb-2">
+            Patients
+          </h2>
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
@@ -108,7 +109,7 @@ function DashboardCard03() {
             </li>
           </EditMenu>
         </header>
-        <h2 className="text-lg font-semibold text-slate-800 mb-2">Patients</h2>
+
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">3,500</div>
           {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">

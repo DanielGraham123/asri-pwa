@@ -48,6 +48,8 @@ function MyApp({ Component, pageProps }) {
 
   const Layout = Component.Layout || EmptyLayout;
 
+  console.log("layout stuff: ", Component);
+
   return (
     <TopLoadingProvider>
       <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />

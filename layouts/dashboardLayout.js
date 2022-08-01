@@ -1,13 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useTopLoader } from "../contexts/LoadingContext";
 import TopLoader from "react-top-loading-bar";
-import Head from "next/head";
 import { Banner, Header, Sidebar } from "../components";
+
+const HeaderContext = createContext({
+  title: "",
+  changeTitle: null,
+});
+
+export const useHeaderContext = () => useContext(HeaderContext);
 
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toploadingRef = useRef();
   const { topLoading, complete } = useTopLoader;
+
+  const [title, setTitle] = useState("");
+  // const [headertitle, setHeadertitle] = useState("");
+
+  // useEffect(() => {
+  //   console.log("title: ", title);
+  //   setHeadertitle(title);
+  // }, [title]);
 
   useEffect(() => {
     if (topLoading === true) {
@@ -21,11 +41,7 @@ export default function DashboardLayout({ children }) {
   }, [topLoading]);
 
   return (
-    <>
-      <Head>
-        <title>Dashboard</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+    <HeaderContext.Provider value={{ title, setTitle }}>
       <div className="flex h-screen overflow-hidden">
         <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
 
@@ -35,7 +51,11 @@ export default function DashboardLayout({ children }) {
         {/* Content area */}
         <div className="relative flex flex-col flex-1 moverflow-y-auto overflow-x-">
           {/*  Site header */}
-          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <Header
+            headerTitle={title}
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
 
           <main>
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
@@ -46,6 +66,6 @@ export default function DashboardLayout({ children }) {
           <Banner message={"Welcome, Daniel"} emoji={"👋"} />
         </div>
       </div>
-    </>
+    </HeaderContext.Provider>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   DashboardCard01,
   DashboardCard02,
@@ -9,12 +9,25 @@ import {
   FilterButton,
   WelcomeBanner,
 } from "../../components";
-import DashboardLayout from "../../layouts/dashboardLayout";
+import DashboardLayout, {
+  useHeaderContext,
+} from "../../layouts/dashboardLayout";
+import Head from "next/head";
 
 export default function Index() {
+  const { title, setTitle } = useHeaderContext();
+
+  useEffect(() => {
+    setTitle("Dashboard");
+    console.log("title: ", title);
+  }, []);
+
   return (
     <>
-      {" "}
+      <Head>
+        <title>{title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       {/* Welcome banner */}
       <WelcomeBanner />
       {/* Dashboard actions */}
