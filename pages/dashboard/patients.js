@@ -7,7 +7,7 @@ import { GoIssueOpened, GoSearch } from "react-icons/go";
 import Transition from "../../components/utils/Transition";
 import { MdFilterAlt } from "react-icons/md";
 
-import patientslist from "./patientlist";
+import patientslist from "../../public/patientlist";
 import Image from "next/image";
 
 const filterDates = [

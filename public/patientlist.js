@@ -1,8 +1,8 @@
-import Image01 from "../../assets/user-36-05.jpg";
-import Image02 from "../../assets/user-36-06.jpg";
-import Image03 from "../../assets/user-36-07.jpg";
-import Image04 from "../../assets/user-36-08.jpg";
-import Image05 from "../../assets/user-36-09.jpg";
+import Image01 from "../assets/user-36-05.jpg";
+import Image02 from "../assets/user-36-06.jpg";
+import Image03 from "../assets/user-36-07.jpg";
+import Image04 from "../assets/user-36-08.jpg";
+import Image05 from "../assets/user-36-09.jpg";
 
 export default [
   {
