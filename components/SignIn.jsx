@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import authDecor from "../assets/auth-decoration.png";
-import bgIndex from "../assets/auth-image.jpg";
 
 import logo from "../public/icon-192x192.png";
 
