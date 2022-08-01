@@ -147,7 +147,6 @@ export default function Patients() {
                         setSelectedFilter(filter);
                         setDropdownOpen(!dropdownOpen);
                       }}
-                      tabindex="0"
                       className={`flex items-center w-full hover:bg-gray-50 py-1 px-3 cursor-pointer
                        ${selectedFilter === filter && "text-indigo-500"}`}
                     >
