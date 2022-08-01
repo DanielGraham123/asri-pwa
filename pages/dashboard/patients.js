@@ -140,8 +140,9 @@ export default function Patients() {
                   ref={dropdown}
                   className="font-medium text-sm text-gray-600"
                 >
-                  {filterDates.map((filter) => (
+                  {filterDates.map((filter, index) => (
                     <button
+                      key={index + "-" + filter}
                       onClick={() => {
                         setSelectedFilter(filter);
                         setDropdownOpen(!dropdownOpen);
@@ -224,46 +225,42 @@ export default function Patients() {
                 </thead>
                 {/* Table body */}
                 <tbody className="text-sm divide-y divide-slate-100">
-                  {data?.map((patient) => {
-                    return (
-                      <tr key={patient.id}>
-                        <td className="p-2 whitespace-nowrap">
-                          <div className="flex items-center">
-                            <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                              <Image
-                                className="rounded-full"
-                                src={patient.image}
-                                width="40"
-                                height="40"
-                                alt={patient.name}
-                              />
-                            </div>
-                            <div className="font-medium text-slate-800">
-                              {patient.name}
-                            </div>
+                  {data?.map((patient) => (
+                    <tr key={patient.id}>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
+                            <Image
+                              className="rounded-full"
+                              src={patient.image}
+                              width="40"
+                              height="40"
+                              alt={patient.name}
+                            />
                           </div>
-                        </td>
-                        <td className="p-2 whitespace-nowrap">
-                          <div className="text-left">{patient.treatment}</div>
-                        </td>
-                        <td className="p-2 whitespace-nowrap">
-                          <div className="text-left font-medium text-pink-700">
-                            {patient.phone}
+                          <div className="font-medium text-slate-800">
+                            {patient.name}
                           </div>
-                        </td>
-                        <td className="p-2 whitespace-nowrap">
-                          <div className="text-sm text-left">
-                            {patient.date}
-                          </div>
-                        </td>
-                        <td className="p-2 whitespace-nowrap ">
-                          <div className="text-sm text-left text-emerald-500">
-                            {patient.status}
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                        </div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-left">{patient.treatment}</div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-left font-medium text-pink-700">
+                          {patient.phone}
+                        </div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-sm text-left">{patient.date}</div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap ">
+                        <div className="text-sm text-left text-emerald-500">
+                          {patient.status}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
