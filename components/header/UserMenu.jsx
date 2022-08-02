@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import Transition from "../utils/Transition";
 
-import UserAvatar from "../../assets/user-avatar-32.png";
+import UserAvatar from "@/assets/user-avatar-32.png";
 import Image from "next/image";
 
 import DashLink from "../dashboard/DashLink";
-import profileUser from "../../assets/user-36-02.jpg";
+import profileUser from "@/assets/user-36-02.jpg";
 
 const UserMenu = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

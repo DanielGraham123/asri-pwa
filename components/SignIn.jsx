@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import authDecor from "../assets/auth-decoration.png";
+import authDecor from "@/assets/auth-decoration.png";
 
-import logo from "../public/icon-192x192.png";
+import logo from "@/icon-192x192.png";
 
 import { useRouter } from "next/router";
 import Link from "next/link";

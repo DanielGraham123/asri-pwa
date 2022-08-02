@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import DashboardLayout, {
-  useHeaderContext,
-} from "../../layouts/dashboardLayout";
+
 import Head from "next/head";
 import { GoIssueOpened, GoSearch } from "react-icons/go";
-import Transition from "../../components/utils/Transition";
 import { MdFilterAlt } from "react-icons/md";
 
-import patientslist from "../../public/patientlist";
+import patientslist from "@/patientlist";
 import Image from "next/image";
+import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
+import Transition from "@/components/utils/Transition";
 
 const filterDates = [
   "Today",
@@ -18,7 +17,7 @@ const filterDates = [
   "All Time",
 ];
 
-export default function Patients() {
+export default function PatientsIndex() {
   const { title, setTitle } = useHeaderContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(filterDates[0]);
@@ -270,4 +269,4 @@ export default function Patients() {
   );
 }
 
-Patients.Layout = DashboardLayout;
+PatientsIndex.Layout = DashboardLayout;

@@ -5,7 +5,7 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import DashLink from "./DashLink";
 import Image from "next/image";
 
-import logo from "../../public/icon-192x192.png";
+import logo from "@/icon-192x192.png";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const storedSidebarExpanded =
@@ -171,7 +171,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   "bg-gray-700 bg-opacity-40"
                 }`}
               >
-                <DashLink href="/dashboard/appointments">
+                <DashLink href="/appointments">
                   <a
                     className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
                       pathname === "/dashboard/appointments" &&
@@ -182,14 +182,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                         <path
                           className={`fill-current text-slate-600 ${
-                            pathname.includes("appointments") &&
+                            pathname === "/dashboard/appointments" &&
                             "text-indigo-500"
                           }`}
                           d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z"
                         />
                         <path
                           className={`fill-current text-slate-400 ${
-                            pathname.includes("appointments") &&
+                            pathname === "/dashboard/appointments" &&
                             "text-indigo-500"
                           }`}
                           d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
@@ -210,7 +210,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   "bg-gray-700 bg-opacity-40"
                 }`}
               >
-                <DashLink href="/dashboard/patients">
+                <DashLink href="/patients">
                   <a
                     className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
                       pathname === "/dashboard/patients" &&
@@ -314,7 +314,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                         <ul className={`pl-9 mt-1 ${!open && "hidden"}`}>
                           <li className="mb-1 last:mb-0">
-                            <DashLink href="/dashboard/settings/account">
+                            <DashLink href="/settings/account">
                               <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                   My Account
@@ -323,7 +323,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             </DashLink>
                           </li>
                           <li className="mb-1 last:mb-0">
-                            <DashLink href="/dashboard/settings/notifications">
+                            <DashLink href="/settings/notifications">
                               <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                   My Notifications
@@ -333,7 +333,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
 
                           <li className="mb-1 last:mb-0">
-                            <DashLink href="/dashboard/settings/feedback">
+                            <DashLink href="/settings/feedback">
                               <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                   Give Feedback

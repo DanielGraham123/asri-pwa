@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import DashboardLayout, {
-  useHeaderContext,
-} from "../../../layouts/dashboardLayout";
+import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
 import Head from "next/head";
 
 export default function Account() {

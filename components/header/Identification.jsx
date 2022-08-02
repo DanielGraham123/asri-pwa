@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import Transition from "../utils/Transition";
 
 import * as faceapi from "face-api.js";
 
-import idIcon from "../../assets/faceid.png";
+import idIcon from "@/assets/faceid.png";
 
 import { GoLinkExternal } from "react-icons/go";
-import { useTopLoader } from "../../contexts/LoadingContext";
+import { useTopLoader } from "@/contexts/LoadingContext";
+import Transition from "../utils/Transition";
 
 const Identification = () => {
   const [IdModal, setIdModal] = useState(false);

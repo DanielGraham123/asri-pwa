@@ -5,9 +5,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useTopLoader } from "../contexts/LoadingContext";
+import { useTopLoader } from "@/contexts/LoadingContext";
 import TopLoader from "react-top-loading-bar";
-import { Banner, Header, Sidebar } from "../components";
+import Sidebar from "@/components/dashboard/Sidebar";
+import { Banner, Header } from "../components";
 
 const HeaderContext = createContext({
   title: "",

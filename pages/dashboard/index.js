@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+
+import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
+import Head from "next/head";
 import {
   DashboardCard01,
   DashboardCard02,
@@ -8,12 +11,7 @@ import {
   Datepicker,
   FilterButton,
   WelcomeBanner,
-} from "../../components";
-import DashboardLayout, {
-  useHeaderContext,
-} from "../../layouts/dashboardLayout";
-import Head from "next/head";
-
+} from "@/components/index";
 export default function Index() {
   const { title, setTitle } = useHeaderContext();
 

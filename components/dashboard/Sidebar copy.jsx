@@ -5,7 +5,7 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import DashLink from "./DashLink";
 import Image from "next/image";
 
-import logo from "../../public/icon-192x192.png";
+import logo from "@/icon-192x192.png";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const storedSidebarExpanded =

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 
-import User01 from "../../../assets/user-36-01.jpg";
-import User02 from "../../../assets/user-36-02.jpg";
-import User03 from "../../../assets/user-36-03.jpg";
-import User04 from "../../../assets/user-36-04.jpg";
+import User01 from "@/assets/user-36-01.jpg";
+import User02 from "@/assets/user-36-02.jpg";
+import User03 from "@/assets/user-36-03.jpg";
+import User04 from "@/assets/user-36-04.jpg";
 
 function DashboardAvatars() {
   return (

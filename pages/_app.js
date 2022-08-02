@@ -1,10 +1,10 @@
 import "../styles/globals.css";
 
-import { TopLoadingProvider } from "../contexts/LoadingContext";
+import { TopLoadingProvider } from "@/contexts/LoadingContext";
 import TopLoader from "react-top-loading-bar";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import EmptyLayout from "../layouts/emptyLayout";
+import EmptyLayout from "@/layouts/emptyLayout";
 
 function MyApp({ Component, pageProps }) {
   const toploadingRef = useRef(null);

@@ -1,7 +1,7 @@
 import React from "react";
 
 import LineChart from "../../charts/LineChart01";
-import Icon from "../../../assets/icon-01.svg";
+import Icon from "@/assets/icon-01.svg";
 import EditMenu from "../../EditMenu";
 
 // Import utilities
