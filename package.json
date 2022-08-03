@@ -15,10 +15,12 @@
     "export": "next export"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.6",
     "face-api.js": "^0.22.2",
     "next": "12.2.2",
     "next-pwa": "^5.5.4",
     "react": "18.2.0",
+    "react-chrono": "^1.18.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-top-loading-bar": "^2.1.0",

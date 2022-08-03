@@ -8,6 +8,7 @@ import patientslist from "@/patientlist";
 import Image from "next/image";
 import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
 import Transition from "@/components/utils/Transition";
+import { useRouter } from "next/router";
 
 const filterDates = [
   "Today",
@@ -18,15 +19,18 @@ const filterDates = [
 ];
 
 export default function PatientsIndex() {
+  const patients = patientslist;
   const { title, setTitle } = useHeaderContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(filterDates[0]);
   const [searchTerm, setSearch] = useState("");
+  const [masterChecked, setMasterChecked] = useState(false);
+  const [data, setPatientData] = useState(null);
+
+  const router = useRouter();
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
-
-  const patients = patientslist;
 
   console.log("patients array: ", patientslist);
 
@@ -38,13 +42,38 @@ export default function PatientsIndex() {
     item.treatment.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const data = !searchTerm
-    ? patients
-    : nameOp.length > 0
-    ? nameOp
-    : treatmentOp;
+  const getSelectedRecords = () => data.filter((item) => item.selected);
+
+  useEffect(() => {
+    setPatientData(
+      !searchTerm ? patients : nameOp.length > 0 ? nameOp : treatmentOp
+    );
+  }, [data]);
 
   console.log("data values: ", data);
+
+  const onMasterCheck = (e) => {
+    patients.map((patient) => (patient.selected = e.target.checked));
+    setMasterChecked(e.target.checked);
+
+    console.log("selected Records: ", getSelectedRecords());
+  };
+
+  const onItemCheck = (e, record) => {
+    console.log("e checked: ", e);
+    let selectedData = patients.filter((patient) => {
+      if (patient.id === record.id) {
+        patient.selected = e.target.checked;
+      }
+      return patient;
+    });
+
+    setPatientData(selectedData);
+
+    setMasterChecked(getSelectedRecords().length === data.length);
+
+    console.log("selected Records: ", getSelectedRecords());
+  };
 
   // close on click outside
   useEffect(() => {
@@ -204,6 +233,20 @@ export default function PatientsIndex() {
                 {/* Table header */}
                 <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">
                   <tr>
+                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+                      <div class="flex items-center">
+                        <label class="inline-flex">
+                          <span class="sr-only">Select all</span>
+                          <input
+                            id="parent-checkbox"
+                            class="form-checkbox"
+                            type="checkbox"
+                            onChange={(e) => onMasterCheck(e)}
+                            checked={masterChecked}
+                          />
+                        </label>
+                      </div>
+                    </th>
                     <th className="p-2 whitespace-nowrap">
                       <div className="font-semibold text-left">Name</div>
                     </th>
@@ -224,7 +267,29 @@ export default function PatientsIndex() {
                 {/* Table body */}
                 <tbody className="text-sm divide-y divide-slate-100">
                   {data?.map((patient) => (
-                    <tr key={patient.id}>
+                    <tr
+                      key={patient.id}
+                      className="hover:bg-gray-200 hover:cursor-pointer"
+                      onClick={() =>
+                        router.push({
+                          pathname: `/patients/${patient.id}`,
+                          query: { data: patient },
+                        })
+                      }
+                    >
+                      <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+                        <div class="flex items-center">
+                          <label class="inline-flex">
+                            <span class="sr-only">Select</span>
+                            <input
+                              class="table-item form-checkbox"
+                              type="checkbox"
+                              checked={patient.selected}
+                              onChange={(e) => onItemCheck(e, patient)}
+                            />
+                          </label>
+                        </div>
+                      </td>
                       <td className="p-2 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
@@ -261,6 +326,42 @@ export default function PatientsIndex() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        {/* Pagination */}
+        <div class="mt-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <nav
+              class="mb-4 sm:mb-0 sm:order-1"
+              role="navigation"
+              aria-label="Navigation"
+            >
+              <ul class="flex justify-center">
+                <li class="ml-3 first:ml-0">
+                  <a
+                    class="btn bg-white border-gray-200 text-gray-300 cursor-not-allowed"
+                    href="#0"
+                    disabled="disabled"
+                  >
+                    &lt;- Previous
+                  </a>
+                </li>
+                <li class="ml-3 first:ml-0">
+                  <a
+                    class="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500"
+                    href="#0"
+                  >
+                    Next -&gt;
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="text-sm text-gray-500 text-center sm:text-left">
+              Showing <span class="font-medium text-gray-600">1</span> to
+              <span class="font-medium text-gray-600">10</span> of
+              <span class="font-medium text-gray-600">467</span> results
             </div>
           </div>
         </div>

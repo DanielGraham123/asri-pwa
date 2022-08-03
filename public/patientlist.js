@@ -7,6 +7,7 @@ import Image05 from "@/assets/user-36-09.jpg";
 export default [
   {
     id: 2323,
+    selected: false,
     name: "Jane Cooper",
     phone: "jane.cooper@example.com",
     title: "Regional Paradigm Technician",
@@ -18,6 +19,7 @@ export default [
   },
   {
     id: 2523,
+    selected: false,
     name: "Cody Fisher",
     phone: "cody.fisher@example.com",
     title: "Product Directives Officer",
@@ -29,6 +31,7 @@ export default [
   },
   {
     id: 2353,
+    selected: false,
     name: "Esther Howard",
     phone: "esther.howard@example.com",
     title: "Forward Response Developer",
@@ -40,6 +43,7 @@ export default [
   },
   {
     id: 2326,
+    selected: false,
     name: "Jenny Wilson",
     phone: "jenny.wilson@example.com",
     title: "Central Security Manager",
@@ -51,6 +55,55 @@ export default [
   },
   {
     id: 2327,
+    selected: false,
+    name: "Kristin Watson",
+    phone: "kristin.watson@example.com",
+    title: "Lean Implementation Liaison",
+    treatment: "Mobility",
+    status: "Completed",
+    date: "23/10/2021",
+    phone: "+237 655 293 301",
+    image: Image05,
+  },
+  {
+    id: 2320,
+    selected: false,
+    name: "Jenny Wilson",
+    phone: "jenny.wilson@example.com",
+    title: "Central Security Manager",
+    treatment: "Program",
+    status: "Completed",
+    date: "03/10/2017",
+    phone: "+237 655 293 301",
+    image: Image04,
+  },
+  {
+    id: 2399,
+    selected: false,
+    name: "Kristin Watson",
+    phone: "kristin.watson@example.com",
+    title: "Lean Implementation Liaison",
+    treatment: "Mobility",
+    status: "Completed",
+    date: "23/10/2021",
+    phone: "+237 655 293 301",
+    image: Image05,
+  },
+  {
+    id: 2309,
+    selected: false,
+    name: "Jenny Wilson",
+    phone: "jenny.wilson@example.com",
+    title: "Central Security Manager",
+    treatment: "Program",
+    status: "Completed",
+    date: "03/10/2017",
+    phone: "+237 655 293 301",
+    image: Image04,
+  },
+  {
+    id: 2507,
+    selected: false,
     name: "Kristin Watson",
     phone: "kristin.watson@example.com",
     title: "Lean Implementation Liaison",
@@ -62,7 +115,8 @@ export default [
   },
   // {
   // id: 2313
-  //   name: "Cameron Williamson",
+
+  // selected: false,  //   name: "Cameron Williamson",
   //   phone: "cameron.williamson@example.com",
   //   title: "Internal Applications Engineer",
   //   treatment: "Security",

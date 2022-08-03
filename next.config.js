@@ -17,6 +17,10 @@ module.exports = pwaConfig({
         destination: "/dashboard/patients",
       },
       {
+        source: "/patients/:path*",
+        destination: "/dashboard/patients/:path*",
+      },
+      {
         source: "/appointments",
         destination: "/dashboard/appointments",
       },
