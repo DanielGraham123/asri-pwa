@@ -51,6 +51,7 @@ export default function Booklet() {
         <Tab.List className="-mb-px flex bg-indigo-100">
           {tabs.map((tab, index) => (
             <Tab
+              key={tab.name + "-" + index}
               className={({ selected }) =>
                 classNames(
                   selected
