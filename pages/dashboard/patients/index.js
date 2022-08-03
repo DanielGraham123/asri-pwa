@@ -233,13 +233,13 @@ export default function PatientsIndex() {
                 {/* Table header */}
                 <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">
                   <tr>
-                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                      <div class="flex items-center">
-                        <label class="inline-flex">
-                          <span class="sr-only">Select all</span>
+                    <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+                      <div className="flex items-center">
+                        <label className="inline-flex">
+                          <span className="sr-only">Select all</span>
                           <input
                             id="parent-checkbox"
-                            class="form-checkbox"
+                            className="form-checkbox"
                             type="checkbox"
                             onChange={(e) => onMasterCheck(e)}
                             checked={masterChecked}
@@ -277,12 +277,12 @@ export default function PatientsIndex() {
                         })
                       }
                     >
-                      <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                        <div class="flex items-center">
-                          <label class="inline-flex">
-                            <span class="sr-only">Select</span>
+                      <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+                        <div className="flex items-center">
+                          <label className="inline-flex">
+                            <span className="sr-only">Select</span>
                             <input
-                              class="table-item form-checkbox"
+                              className="table-item form-checkbox"
                               type="checkbox"
                               checked={patient.selected}
                               onChange={(e) => onItemCheck(e, patient)}
@@ -331,26 +331,26 @@ export default function PatientsIndex() {
         </div>
 
         {/* Pagination */}
-        <div class="mt-5">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <nav
-              class="mb-4 sm:mb-0 sm:order-1"
+              className="mb-4 sm:mb-0 sm:order-1"
               role="navigation"
               aria-label="Navigation"
             >
-              <ul class="flex justify-center">
-                <li class="ml-3 first:ml-0">
+              <ul className="flex justify-center">
+                <li className="ml-3 first:ml-0">
                   <a
-                    class="btn bg-white border-gray-200 text-gray-300 cursor-not-allowed"
+                    className="btn bg-white border-gray-200 text-gray-300 cursor-not-allowed"
                     href="#0"
                     disabled="disabled"
                   >
                     &lt;- Previous
                   </a>
                 </li>
-                <li class="ml-3 first:ml-0">
+                <li className="ml-3 first:ml-0">
                   <a
-                    class="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500"
+                    className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500"
                     href="#0"
                   >
                     Next -&gt;
@@ -358,10 +358,10 @@ export default function PatientsIndex() {
                 </li>
               </ul>
             </nav>
-            <div class="text-sm text-gray-500 text-center sm:text-left">
-              Showing <span class="font-medium text-gray-600">1</span> to
-              <span class="font-medium text-gray-600">10</span> of
-              <span class="font-medium text-gray-600">467</span> results
+            <div className="text-sm text-gray-500 text-center sm:text-left">
+              Showing <span className="font-medium text-gray-600">1</span> to
+              <span className="font-medium text-gray-600">10</span> of
+              <span className="font-medium text-gray-600">467</span> results
             </div>
           </div>
         </div>
