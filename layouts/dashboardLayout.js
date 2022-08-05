@@ -9,6 +9,7 @@ import { useTopLoader } from "@/contexts/LoadingContext";
 import TopLoader from "react-top-loading-bar";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { Banner, Header } from "../components";
+import Head from "next/head";
 
 const HeaderContext = createContext({
   title: "",
@@ -43,6 +44,9 @@ export default function DashboardLayout({ children }) {
 
   return (
     <HeaderContext.Provider value={{ title, setTitle }}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=1500" />
+      </Head>
       <div className="flex h-screen overflow-hidden">
         <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
 

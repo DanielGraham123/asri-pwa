@@ -60,6 +60,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/forms"), // add custom variant for expanding sidebar
     plugin(({ addVariant, e }) => {
       addVariant("sidebar-expanded", ({ modifySelectors, separator }) => {

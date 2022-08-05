@@ -1,430 +1,194 @@
-export default [
-  {
-    id: 2029,
-    firstName: "John",
-    middleName: "Random",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+237698989989",
-    createdAt: "2013/12/20",
-    updatedAt: "2013/12/20",
-    birthdate: "1980/10/20",
-    illnesses: [
-      {
-        id: "IL2983",
-        illness_type_id: "IL2983",
-        startDate: "2013/12/20",
-        endDate: "2013/12/25",
-        createdAt: "2013/12/25",
-        updatedAt: "2013/12/25",
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            startDate: "2013/12/21",
-            endDate: "2013/12/25",
-          },
-        ],
-        versions: [
-          {
-            id: "v1",
-            illness_type_id: "IL2983",
-            startDate: "2013/12/20",
-            endDate: "2013/12/25",
-            medicationsTaken: [
-              {
-                medication_id: "MED2929",
-                startDate: "2013/12/21",
-                endDate: "2013/12/25",
-              },
-            ],
-          },
-        ],
+import Image01 from "@/assets/user-36-05.jpg";
+import Image02 from "@/assets/user-36-06.jpg";
+import Image03 from "@/assets/user-36-07.jpg";
+import Image04 from "@/assets/user-36-08.jpg";
+import moment from "moment";
+
+export default {
+  id: 2029,
+  createdAt: "2013/12/20",
+  updatedAt: "2013/12/20",
+  birthdate: "1980/10/20",
+  image: Image01,
+  illnesses: [
+    {
+      id: "IL2983",
+      illness_type_id: "IL2983",
+      name: "Typhoid with Stomach Ache",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum eius exercitationem dignissimos omnis, corrupti quaerat dolore, assumenda vel suscipit, nam deleniti atque reiciendis voluptatum repudiandae. Perferendis incidunt eveniet consequatur, sit molestiae natus.",
+      startDate: "2013/12/20",
+      endDate: "2013/12/25",
+      createdAt: "2013/12/25",
+      updatedAt: "2013/12/25",
+      bioData: {
+        height: "1.32",
+        weight: "50",
       },
-    ],
-    activities: [
-      {
-        id: 29,
-        type: "Bench Press",
-        date: "2013/12/20",
-        time: "20:30",
-        weight: "120",
-        reps: "8",
-        sets: "3",
+      // prior medications taken
+      medicationsTaken: [
+        {
+          id: "MED2929",
+          name: "Fever grass",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+        {
+          id: "MED2920",
+          name: "Lemon juice",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+        {
+          id: "MED2921",
+          name: "Palm Oil",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+      ],
+      stage: ["advanced", "severe", "light"],
+      doctor: {
+        id: "DOC293829",
+        name: "Dr. Stephane",
+        phone: "+237 658 494 938",
+        email: "stephane@gmail.com",
+        hospital_name: "Buea, Hospital",
+        specialty: "Medical",
       },
-      {
-        id: 12,
-        type: "Exercise Bike",
-        date: "2013/12/19",
-        time: "20:30",
-        duration: "1800",
-        restingHeartRate: "103",
-        targetHeartRate: "132",
-        caloriesBurned: "189",
+    },
+    {
+      id: "IL7883",
+      illness_type_id: "IL2983",
+      name: "Malaria",
+      startDate: "2013/12/20",
+      endDate: "2013/12/25",
+      description:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum eligendi obcaecati perspiciatis asperiores maxime. Eius? obcaecati perspiciatis asperiores maxime. Eius? obcaecati perspiciatis asperiores maxime. Eius? obcaecati perspiciatis asperiores maxime. Eius? obcaecati perspiciatis asperiores maxime. Eius?",
+      createdAt: "2013/12/25",
+      updatedAt: "2013/12/25",
+      // prior medications taken
+      bioData: {
+        height: "1.32",
+        weight: "50",
       },
-    ],
-    conditions: [
-      {
-        condition_id: "CON29839",
-        startDate: "2010/1/3",
-        endDate: null,
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            datesTaken: ["2013/10/12", "2011/10/12"],
-          },
-        ],
+      medicationsTaken: [
+        {
+          id: "MED2929",
+          name: "Fever grass",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+        {
+          id: "MED2929",
+          name: "Lemon juice",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+        {
+          id: "MED2929",
+          name: "Palm Oil",
+          startDate: "2013/12/21",
+          endDate: "2013/12/25",
+        },
+      ],
+      stage: ["light", "severe", "light"],
+      doctor_id: "DOC293829",
+      doctor: {
+        name: "Dr. Jean Baptist",
+        phone: "+237 658 494 938",
+        email: "stephane@gmail.com",
+        hospital_name: "Regional Hospital",
+        specialty: "Medical",
       },
-    ],
-    currentMedications: [
-      {
-        medication_id: "MED9898",
-        medication_type_id: "MED9898",
-        startDate: "2013/12/21",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    medicationsTaken: [
-      {
-        medication_id: "MED2929",
-        medication_type_id: "MED2929",
-        startDate: "2012/12/21",
-        endDate: "2012/12/25",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    treatements: [
-      {
-        treatement_id: "TRT2998",
-        treatment_type_id: "TRT2998",
-        treatement_name: "Phyiscal Therapy",
-        startDate: "2012/10/1",
-        endDate: "2012/12/3",
-        provider: 2029,
-        activity_id: 2029,
-      },
-    ],
-  },
-  {
-    id: 2029,
-    firstName: "John",
-    middleName: "Random",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+237698989989",
-    createdAt: "2013/12/20",
-    updatedAt: "2013/12/20",
-    birthdate: "1980/10/20",
-    illnesses: [
-      {
-        id: "IL2983",
-        illness_type_id: "IL2983",
-        startDate: "2013/12/20",
-        endDate: "2013/12/25",
-        createdAt: "2013/12/25",
-        updatedAt: "2013/12/25",
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            startDate: "2013/12/21",
-            endDate: "2013/12/25",
-          },
-        ],
-        versions: [
-          {
-            id: "v1",
-            illness_type_id: "IL2983",
-            startDate: "2013/12/20",
-            endDate: "2013/12/25",
-            medicationsTaken: [
-              {
-                medication_id: "MED2929",
-                startDate: "2013/12/21",
-                endDate: "2013/12/25",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    activities: [
-      {
-        id: 29,
-        type: "Bench Press",
-        date: "2013/12/20",
-        time: "20:30",
-        weight: "120",
-        reps: "8",
-        sets: "3",
-      },
-      {
-        id: 12,
-        type: "Exercise Bike",
-        date: "2013/12/19",
-        time: "20:30",
-        duration: "1800",
-        restingHeartRate: "103",
-        targetHeartRate: "132",
-        caloriesBurned: "189",
-      },
-    ],
-    conditions: [
-      {
-        condition_id: "CON29839",
-        startDate: "2010/1/3",
-        endDate: null,
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            datesTaken: ["2013/10/12", "2011/10/12"],
-          },
-        ],
-      },
-    ],
-    currentMedications: [
-      {
-        medication_id: "MED9898",
-        medication_type_id: "MED9898",
-        startDate: "2013/12/21",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    medicationsTaken: [
-      {
-        medication_id: "MED9897",
-        medication_type_id: "MED9897",
-        startDate: "2012/12/21",
-        endDate: "2012/12/25",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    treatements: [
-      {
-        treatement_id: "TRT2998",
-        treatment_type_id: "TRT2998",
-        treatement_name: "Phyiscal Therapy",
-        startDate: "2012/10/1",
-        endDate: "2012/12/3",
-        provider: 2029,
-        activity_id: 2029,
-      },
-    ],
-  },
-  {
-    id: 2029,
-    firstName: "John",
-    middleName: "Random",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+237698989989",
-    createdAt: "2013/12/20",
-    updatedAt: "2013/12/20",
-    birthdate: "1980/10/20",
-    illnesses: [
-      {
-        id: "IL2983",
-        illness_type_id: "IL2983",
-        startDate: "2013/12/20",
-        endDate: "2013/12/25",
-        createdAt: "2013/12/25",
-        updatedAt: "2013/12/25",
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            startDate: "2013/12/21",
-            endDate: "2013/12/25",
-          },
-        ],
-        versions: [
-          {
-            id: "v1",
-            illness_type_id: "IL2983",
-            startDate: "2013/12/20",
-            endDate: "2013/12/25",
-            medicationsTaken: [
-              {
-                medication_id: "MED2929",
-                startDate: "2013/12/21",
-                endDate: "2013/12/25",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    activities: [
-      {
-        id: 29,
-        type: "Bench Press",
-        date: "2013/12/20",
-        time: "20:30",
-        weight: "120",
-        reps: "8",
-        sets: "3",
-      },
-      {
-        id: 12,
-        type: "Exercise Bike",
-        date: "2013/12/19",
-        time: "20:30",
-        duration: "1800",
-        restingHeartRate: "103",
-        targetHeartRate: "132",
-        caloriesBurned: "189",
-      },
-    ],
-    conditions: [
-      {
-        condition_id: "CON29839",
-        startDate: "2010/1/3",
-        endDate: null,
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            datesTaken: ["2013/10/12", "2011/10/12"],
-          },
-        ],
-      },
-    ],
-    currentMedications: [
-      {
-        medication_id: "MED9898",
-        medication_type_id: "MED9898",
-        startDate: "2013/12/21",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    medicationsTaken: [
-      {
-        medication_id: "MED9897",
-        medication_type_id: "MED9897",
-        startDate: "2012/12/21",
-        endDate: "2012/12/25",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    treatements: [
-      {
-        treatement_id: "TRT2998",
-        treatment_type_id: "TRT2998",
-        treatement_name: "Phyiscal Therapy",
-        startDate: "2012/10/1",
-        endDate: "2012/12/3",
-        provider: 2029,
-        activity_id: 2029,
-      },
-    ],
-  },
-  {
-    id: 2029,
-    firstName: "John",
-    middleName: "Random",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+237698989989",
-    createdAt: "2013/12/20",
-    updatedAt: "2013/12/20",
-    birthdate: "1980/10/20",
-    illnesses: [
-      {
-        id: "IL2983",
-        illness_type_id: "IL2983",
-        startDate: "2013/12/20",
-        endDate: "2013/12/25",
-        createdAt: "2013/12/25",
-        updatedAt: "2013/12/25",
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            startDate: "2013/12/21",
-            endDate: "2013/12/25",
-          },
-        ],
-        versions: [
-          {
-            id: "v1",
-            illness_type_id: "IL2983",
-            startDate: "2013/12/20",
-            endDate: "2013/12/25",
-            medicationsTaken: [
-              {
-                medication_id: "MED2929",
-                startDate: "2013/12/21",
-                endDate: "2013/12/25",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    activities: [
-      {
-        id: 29,
-        type: "Bench Press",
-        date: "2013/12/20",
-        time: "20:30",
-        weight: "120",
-        reps: "8",
-        sets: "3",
-      },
-      {
-        id: 12,
-        type: "Exercise Bike",
-        date: "2013/12/19",
-        time: "20:30",
-        duration: "1800",
-        restingHeartRate: "103",
-        targetHeartRate: "132",
-        caloriesBurned: "189",
-      },
-    ],
-    conditions: [
-      {
-        condition_id: "CON29839",
-        startDate: "2010/1/3",
-        endDate: null,
-        medicationsTaken: [
-          {
-            medication_id: "MED2929",
-            datesTaken: ["2013/10/12", "2011/10/12"],
-          },
-        ],
-      },
-    ],
-    currentMedications: [
-      {
-        medication_id: "MED9898",
-        medication_type_id: "MED9898",
-        startDate: "2013/12/21",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    medicationsTaken: [
-      {
-        medication_id: "MED9897",
-        medication_type_id: "MED9897",
-        startDate: "2012/12/21",
-        endDate: "2012/12/25",
-        condition_type: "illness or condition name",
-        condition_id: 2029,
-      },
-    ],
-    treatements: [
-      {
-        treatement_id: "TRT2998",
-        treatment_type_id: "TRT2998",
-        treatement_name: "Phyiscal Therapy",
-        startDate: "2012/10/1",
-        endDate: "2012/12/3",
-        provider: 2029,
-        activity_id: 2029,
-      },
-    ],
-  },
-];
+    },
+  ],
+  prescriptions: [
+    {
+      id: "PRSC7898",
+      illness_type_id: "IL2983",
+      startDate: "2013/12/21",
+      title: `${moment(new Date("2013/12/21").getTime()).calendar()}`,
+
+      endtDate: "2013/12/24",
+      drugs: [
+        {
+          name: "Arthemeter",
+          intakeFreq: "1,1,1",
+        },
+        {
+          name: "Injections",
+          intakeFreq: "1,1,1",
+        },
+        {
+          name: "Paracet",
+          intakeFreq: "2,2,2",
+        },
+        {
+          name: "Doliprane",
+          intakeFreq: "1,1",
+        },
+      ],
+    },
+    {
+      id: "PRSC9098",
+      illness_type_id: "IL2986",
+      startDate: "2013/12/21",
+      title: "On 2013/12/21",
+
+      endtDate: "2013/12/24",
+      drugs: [
+        {
+          name: "Arthemeter",
+          intakeFreq: "1,1,1",
+        },
+        {
+          name: "Paracet",
+          intakeFreq: "2,2,2",
+        },
+        {
+          name: "Doliprane",
+          intakeFreq: "1,1",
+        },
+      ],
+    },
+    {
+      id: "PRSC9998",
+      illness_type_id: "IL2986",
+      startDate: "2013/12/21",
+      title: "On 2013/12/21",
+      endtDate: "2013/12/24",
+      drugs: [
+        {
+          name: "Arthemeter",
+          intakeFreq: "1,1,1",
+        },
+        {
+          name: "Paracet",
+          intakeFreq: "2,2,2",
+        },
+        {
+          name: "Doliprane",
+          intakeFreq: "1,1",
+        },
+      ],
+    },
+  ],
+  treatements: [
+    {
+      id: "TRT2998",
+      treatment_type_id: "TRT2998",
+      treatement_name: "Malaria Treatment",
+      startDate: "2012/10/1",
+      endDate: "2012/12/3",
+      rdv: "2012/12/14",
+    },
+    {
+      id: "TRT3995",
+      treatment_type_id: "TRT3995",
+      treatement_name: "Typhoid Treatment",
+      startDate: "2012/10/1",
+      endDate: "2012/12/3",
+      rdv: "2012/12/18",
+    },
+  ],
+};

@@ -109,7 +109,6 @@ export default function PatientsIndex() {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <div>
@@ -209,7 +208,7 @@ export default function PatientsIndex() {
 
         <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
           <header className="flex justify-between items-center px-5 py-4 border-b border-slate-100">
-            <h2 className="font-semibold text-slate-800">Recent Patients</h2>
+            <h2 className="font-semibold text-slate-800">List of Patients</h2>
 
             {/* search field */}
             <label htmlFor="searchTable" className="relative">

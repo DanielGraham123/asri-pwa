@@ -14,7 +14,7 @@ export default function PatientID() {
   const { id } = router.query;
 
   useEffect(() => {
-    setTitle("Id");
+    setTitle("Patient Name");
     console.log("title: ", title);
     console.log("records: ", patients);
 
@@ -27,15 +27,15 @@ export default function PatientID() {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div>Patient: {id}</div>
       <button
+        className="bg-blue-600 text-white shadow-lg px-3 py-2 animate-pulse rounded-lg mt-8"
         onClick={() =>
           router.push({ pathname: `/patients/${id}/booklet`, query: data })
         }
       >
-        Booklet
+        View Booklet
       </button>
     </>
   );

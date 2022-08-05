@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchModal from "./header/SearchModal";
 import Notifications from "./header/Notifications";
 import Help from "./header/Help";
@@ -7,6 +7,21 @@ import Identification from "./header/Identification";
 
 const Header = ({ sidebarOpen, setSidebarOpen, headerTitle }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const trigger = useRef(null);
+
+  useEffect(() => {
+    console.log("sidebar open: ", sidebarOpen);
+  }, [sidebarOpen]);
+
+  useEffect(() => {
+    const clickHandler = ({ target }) => {
+      if (!trigger.current) return;
+      if (!sidebarOpen || trigger.current.contains(target)) return;
+      setSidebarOpen(!sidebarOpen);
+    };
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  });
 
   return (
     <header className="sticky top-0 bg-white border-b border-slate-200 z-30 shadow-sm">
@@ -17,6 +32,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, headerTitle }) => {
           <div className="flex">
             {/* Hamburger button */}
             <button
+              ref={trigger}
               className="text-slate-500 hover:text-slate-600 lg:hidden"
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
@@ -33,7 +49,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, headerTitle }) => {
                 <rect x="4" y="17" width="16" height="2" />
               </svg>
             </button>
-            <h2 className="text-2xl ml-4 md:ml-0">{headerTitle}</h2>
+            <h2 className="text-2xl ml-4 lg:ml-0">{headerTitle}</h2>
           </div>
 
           {/* Header: Right side */}
