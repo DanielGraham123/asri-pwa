@@ -59,7 +59,9 @@ module.exports = {
       },
     },
   },
+
   plugins: [
+    require("tailwind-scrollbar"),
     require("@tailwindcss/line-clamp"),
     require("@tailwindcss/forms"), // add custom variant for expanding sidebar
     plugin(({ addVariant, e }) => {
@@ -73,4 +75,7 @@ module.exports = {
       });
     }),
   ],
+  variants: {
+    scrollbar: ["rounded"],
+  },
 };

@@ -29,6 +29,9 @@
   .badge-blue {
     @apply bg-indigo-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200  uppercase;
   }
+  .card-elem {
+    @apply p-4 bg-white rounded-lg border border-gray-200 shadow-md;
+  }
 }
 
 @tailwind utilities;

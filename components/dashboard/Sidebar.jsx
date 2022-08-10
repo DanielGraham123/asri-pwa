@@ -8,12 +8,14 @@ import Image from "next/image";
 import logo from "@/icon-192x192.png";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const storedSidebarExpanded =
-    typeof window !== "undefined" && localStorage.getItem("sidebar-expanded");
+  const hasWindow = typeof window !== "undefined";
 
-  const [sidebarExpanded, setSidebarExpanded] = useState(
-    storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
+  const [storedSidebarExpanded, setStoredSidbar] = useState(
+    hasWindow && JSON.parse(localStorage.getItem("sidebar-expanded"))
   );
+
+  const [sidebarExpanded, setSidebarExpanded] = useState(null);
+
   const trigger = useRef(null);
   const sidebar = useRef(null);
 
@@ -21,6 +23,28 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { pathname } = router;
 
   console.log("pathname", router.pathname);
+
+  useEffect(() => {
+    let sd = JSON.parse(localStorage.getItem("sidebar-expanded"));
+    console.log("sidebar-expanded: ", sd);
+
+    if (hasWindow) {
+      setSidebarExpanded(sd);
+
+      setStoredSidbar(sd);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (sidebarExpanded) {
+      document.querySelector("body").classList.add("sidebar-expanded");
+    } else if (sidebarExpanded === null) {
+      setSidebarExpanded(storedSidebarExpanded);
+    } else {
+      document.querySelector("body").classList.remove("sidebar-expanded");
+    }
+    localStorage.setItem("sidebar-expanded", sidebarExpanded);
+  }, [sidebarExpanded]);
 
   // close on click outside
   useEffect(() => {
@@ -42,20 +66,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!sidebarOpen || keyCode !== 27) return;
-      setSidebarOpen(false);
+      // setSidebarOpen(false);
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
-
-  useEffect(() => {
-    localStorage.setItem("sidebar-expanded", sidebarExpanded);
-    if (sidebarExpanded) {
-      document.querySelector("body").classList.add("sidebar-expanded");
-    } else {
-      document.querySelector("body").classList.remove("sidebar-expanded");
-    }
-  }, [sidebarExpanded]);
 
   return (
     <div suppressHydrationWarning={true}>
@@ -145,13 +160,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         />
                         <path
                           className={`fill-current text-slate-600 ${
-                            pathname === "/dashboard" && "text-indigo-600"
+                            pathname === "/dashboard" && "!text-indigo-600"
                           }`}
                           d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"
                         />
                         <path
                           className={`fill-current text-slate-400 ${
-                            pathname === "/dashboard" && "text-indigo-200"
+                            pathname === "/dashboard" && "!text-indigo-200"
                           }`}
                           d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"
                         />
@@ -167,30 +182,32 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* Appointments */}
               <li
                 className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                  pathname === "/dashboard/appointments" &&
+                  pathname.includes("appointments") &&
                   "bg-gray-700 bg-opacity-40"
                 }`}
               >
                 <DashLink href="/appointments">
                   <a
                     className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
-                      pathname === "/dashboard/appointments" &&
+                      pathname.includes("appointments") &&
                       "hover:text-slate-200"
                     }`}
                   >
                     <div className="flex items-center">
                       <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                         <path
-                          className={`fill-current text-slate-600 ${
-                            pathname === "/dashboard/appointments" &&
-                            "text-indigo-500"
+                          className={`fill-current ${
+                            pathname.includes("appointments")
+                              ? "text-indigo-500"
+                              : "text-slate-600"
                           }`}
                           d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z"
                         />
                         <path
-                          className={`fill-current text-slate-400 ${
-                            pathname === "/dashboard/appointments" &&
-                            "text-indigo-500"
+                          className={`fill-current  ${
+                            pathname.includes("appointments")
+                              ? "text-indigo-500"
+                              : "text-slate-400"
                           }`}
                           d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
                         />
@@ -206,28 +223,26 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* Patients */}
               <li
                 className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                  pathname === "/dashboard/patients" &&
-                  "bg-gray-700 bg-opacity-40"
+                  pathname.includes("patients") && "bg-gray-700 bg-opacity-40"
                 }`}
               >
                 <DashLink href="/patients">
                   <a
                     className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
-                      pathname === "/dashboard/patients" &&
-                      "hover:text-slate-200"
+                      pathname.includes("patients") && "hover:text-slate-200"
                     }`}
                   >
                     <div className="flex items-center">
                       <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                         <path
                           className={`fill-current text-slate-600 ${
-                            pathname.includes("patients") && "text-indigo-500"
+                            pathname.includes("patients") && "!text-indigo-500"
                           }`}
                           d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
                         />
                         <path
                           className={`fill-current text-slate-400 ${
-                            pathname.includes("patients") && "text-indigo-500"
+                            pathname.includes("patients") && "!text-indigo-500"
                           }`}
                           d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
                         />
@@ -245,7 +260,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
-                      <DashLink href="#0">
+                      <DashLink href="">
                         <a
                           className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
                             pathname.includes("settings") &&
@@ -267,28 +282,28 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 <path
                                   className={`fill-current text-slate-600 ${
                                     pathname.includes("settings") &&
-                                    "text-indigo-500"
+                                    "!text-indigo-500"
                                   }`}
                                   d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"
                                 />
                                 <path
                                   className={`fill-current text-slate-400 ${
                                     pathname.includes("settings") &&
-                                    "text-indigo-500"
+                                    "!text-indigo-500"
                                   }`}
                                   d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"
                                 />
                                 <path
                                   className={`fill-current text-slate-600 ${
                                     pathname.includes("settings") &&
-                                    "text-indigo-500"
+                                    "!text-indigo-500"
                                   }`}
                                   d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"
                                 />
                                 <path
                                   className={`fill-current text-slate-400 ${
                                     pathname.includes("settings") &&
-                                    "text-indigo-500"
+                                    "!text-indigo-500"
                                   }`}
                                   d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"
                                 />
@@ -315,8 +330,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         <ul className={`pl-9 mt-1 ${!open && "hidden"}`}>
                           <li className="mb-1 last:mb-0">
                             <DashLink href="/settings/account">
-                              <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
-                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                              <a
+                                className={`block text-slate-400 hover:text-slate-200 transition duration-150 truncate`}
+                              >
+                                <span
+                                  className={`text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200 ${
+                                    pathname.includes("account") &&
+                                    "!text-indigo-500"
+                                  }`}
+                                >
                                   My Account
                                 </span>
                               </a>
@@ -324,7 +346,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                           <li className="mb-1 last:mb-0">
                             <DashLink href="/settings/notifications">
-                              <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+                              <a
+                                className={`block text-slate-400 hover:text-slate-200 transition duration-150 truncate ${
+                                  pathname.includes("notifications") &&
+                                  "!text-indigo-500"
+                                }`}
+                              >
                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                   My Notifications
                                 </span>
@@ -334,7 +361,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
                           <li className="mb-1 last:mb-0">
                             <DashLink href="/settings/feedback">
-                              <a className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+                              <a
+                                className={`block text-slate-400 hover:text-slate-200 transition duration-150 truncate ${
+                                  pathname.includes("feedback") &&
+                                  "!text-indigo-500"
+                                }`}
+                              >
                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                   Give Feedback
                                 </span>

@@ -17,11 +17,7 @@ export default function Account() {
       </Head>
       <div className="flex-1 xl:overflow-y-auto">
         <div className="max-w-3xl mx-auto ">
-          <h1 className="text-3xl font-extrabold text-blue-gray-900">
-            Account
-          </h1>
-
-          <form className="mt-6 space-y-8 divide-y divide-y-blue-gray-200">
+          <form className="mt- space-y-8 divide-y divide-y-blue-gray-200">
             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-6 sm:gap-x-6">
               <div className="sm:col-span-6">
                 <h2 className="text-xl font-medium text-blue-gray-900">

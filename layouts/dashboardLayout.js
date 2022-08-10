@@ -45,16 +45,16 @@ export default function DashboardLayout({ children }) {
   return (
     <HeaderContext.Provider value={{ title, setTitle }}>
       <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=1500" />
+        <meta name="viewport" content="initial-scale=1.0, width=20%" />
       </Head>
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex h-screen overflow-hidden ">
         <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
 
         {/* Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         {/* Content area */}
-        <div className="relative flex flex-col flex-1 moverflow-y-auto overflow-x-">
+        <div className="relative flex flex-col flex-1 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300 moverflow-y-auto overflow-x- scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           {/*  Site header */}
           <Header
             headerTitle={title}

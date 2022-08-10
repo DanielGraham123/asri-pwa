@@ -10,6 +10,8 @@ import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
 import Transition from "@/components/utils/Transition";
 import { useRouter } from "next/router";
 
+import { BiLinkExternal } from "react-icons/bi";
+
 const filterDates = [
   "Today",
   "Last 7 Days",
@@ -23,7 +25,7 @@ export default function PatientsIndex() {
   const { title, setTitle } = useHeaderContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(filterDates[0]);
-  const [searchTerm, setSearch] = useState("");
+  const [patientSearchTerm, setPatientSearch] = useState("");
   const [masterChecked, setMasterChecked] = useState(false);
   const [data, setPatientData] = useState(null);
 
@@ -35,20 +37,20 @@ export default function PatientsIndex() {
   console.log("patients array: ", patientslist);
 
   const nameOp = patients.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.name.toLowerCase().includes(patientSearchTerm.toLowerCase())
   );
 
   const treatmentOp = patients.filter((item) =>
-    item.treatment.toLowerCase().includes(searchTerm.toLowerCase())
+    item.treatment.toLowerCase().includes(patientSearchTerm.toLowerCase())
   );
 
   const getSelectedRecords = () => data.filter((item) => item.selected);
 
   useEffect(() => {
     setPatientData(
-      !searchTerm ? patients : nameOp.length > 0 ? nameOp : treatmentOp
+      !patientSearchTerm ? patients : nameOp.length > 0 ? nameOp : treatmentOp
     );
-  }, [data]);
+  }, [patientSearchTerm]);
 
   console.log("data values: ", data);
 
@@ -217,7 +219,7 @@ export default function PatientsIndex() {
                 id="searchTable"
                 className="focus:ring-transparent focus:border-indigo-500 focus:border-2 focus:outline-none rounded-lg py-1 pr-6 text-sm w-[220px]"
                 placeholder="Search Name or Treatment"
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setPatientSearch(e.target.value)}
               />
               <GoSearch
                 className="text-gray-400 absolute top-2 right-3"
@@ -238,7 +240,7 @@ export default function PatientsIndex() {
                           <span className="sr-only">Select all</span>
                           <input
                             id="parent-checkbox"
-                            className="form-checkbox"
+                            className="form-checkbox focus:ring-0 hover:cursor-pointer h-4 w-4 text-indigo-600 border-gray-300 rounded"
                             type="checkbox"
                             onChange={(e) => onMasterCheck(e)}
                             checked={masterChecked}
@@ -269,19 +271,13 @@ export default function PatientsIndex() {
                     <tr
                       key={patient.id}
                       className="hover:bg-gray-200 hover:cursor-pointer"
-                      onClick={() =>
-                        router.push({
-                          pathname: `/patients/${patient.id}`,
-                          query: { data: patient },
-                        })
-                      }
                     >
                       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
                         <div className="flex items-center">
                           <label className="inline-flex">
                             <span className="sr-only">Select</span>
                             <input
-                              className="table-item form-checkbox"
+                              className="table-item form-checkbox focus:ring-0 hover:cursor-pointer h-4 w-4 text-indigo-600 border-gray-300 rounded"
                               type="checkbox"
                               checked={patient.selected}
                               onChange={(e) => onItemCheck(e, patient)}
@@ -300,8 +296,20 @@ export default function PatientsIndex() {
                               alt={patient.name}
                             />
                           </div>
-                          <div className="font-medium text-slate-800">
-                            {patient.name}
+                          <div
+                            className="font-medium text-slate-800 hover:underline hover:text-blue-600 flex gap-1 items-baseline"
+                            onClick={() =>
+                              router.push({
+                                pathname: `/patients/${patient.id}`,
+                                query: patient,
+                              })
+                            }
+                          >
+                            <span>{patient.name}</span>
+                            <BiLinkExternal
+                              size={12}
+                              className="text-indigo-500"
+                            />
                           </div>
                         </div>
                       </td>

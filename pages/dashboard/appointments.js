@@ -20,7 +20,7 @@ export default function Appointments() {
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const treatmentOp = appointments.filter((item) =>
+  const diseaseOp = appointments.filter((item) =>
     item.diseaseTitle.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -30,9 +30,9 @@ export default function Appointments() {
 
   useEffect(() => {
     setAppointmentData(
-      !searchTerm ? appointments : nameOp.length > 0 ? nameOp : treatmentOp
+      !searchTerm ? appointments : nameOp.length > 0 ? nameOp : diseaseOp
     );
-  }, [data]);
+  }, [searchTerm]);
 
   useEffect(() => {
     setTitle("Appointments");
@@ -81,7 +81,7 @@ export default function Appointments() {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Title
+                      Disease
                     </th>
                     <th
                       scope="col"
