@@ -220,8 +220,11 @@ export default function PatientID() {
 
             {/* body: list of files */}
             <div className="overflow-auto h-[90%] border-gray-100 rounded-md border-2">
-              {files.map((file) => (
-                <Card classes={"my-1 flex items-center justify-between"}>
+              {files.map((file, index) => (
+                <Card
+                  key={file.name + "#" + index}
+                  classes={"my-1 flex items-center justify-between"}
+                >
                   <div className="flex items-center gap-2">
                     <RiFileTextLine />
                     <span className="text-xs">{file.name}</span>
