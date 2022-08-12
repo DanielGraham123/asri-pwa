@@ -8,6 +8,36 @@ import Card from "@/components/Card";
 import Image05 from "@/assets/user-36-09.jpg";
 import Image from "next/image";
 import moment from "moment";
+
+import { MdOutlineUploadFile } from "react-icons/md";
+import { RiFileTextLine } from "react-icons/ri";
+
+const files = [
+  {
+    name: "blood tests.pdf",
+    size: "25kb",
+  },
+  {
+    name: "Medical Prescriptions.pdf",
+    size: "5kb",
+  },
+  {
+    name: "X-Ray results 2.pdf",
+    size: "2kb",
+  },
+  {
+    name: "X-Ray results.pdf",
+    size: "25kb",
+  },
+  {
+    name: "X-Ray results 2.pdf",
+    size: "2kb",
+  },
+  {
+    name: "X-Ray results.pdf",
+    size: "25kb",
+  },
+];
 export default function PatientID() {
   const { title, setTitle } = useHeaderContext();
   const [testImg, setTestImg] = useState();
@@ -35,9 +65,9 @@ export default function PatientID() {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="grid grid-cols-6 gap-3">
+      <div className="container grid grid-cols-3 xl:grid-cols-4 gap-3">
         {/* Patient Info */}
-        <div className="col-span-4">
+        <div className="col-span-2 xl:col-span-2 flex flex-col">
           <Card classes={"flex items-center grid grid-cols-2 gap-2 p-0"}>
             <div className="border-r-2 p-5 w-full border-gray-200">
               <div className="text-center">
@@ -126,8 +156,8 @@ export default function PatientID() {
         </div>
 
         {/* Doctor Notes */}
-        <div className="col-span-2">
-          <Card>
+        <div className="xl:col-span-1 flex flex-col">
+          <Card classes={"h-[361px]"}>
             <header className="flex justify-between mb-3 items-center">
               <h2 className="font-bold">Notes</h2>
 
@@ -172,6 +202,33 @@ export default function PatientID() {
                   </div>
                 </div>
               </div>
+            </div>
+          </Card>
+        </div>
+
+        {/*  */}
+        <div className="xl:col-span-1">
+          <Card classes={" h-[361px]"}>
+            <header className="flex justify-between mb-3 items-baseline">
+              <h2 className="font-bold">Files / Documents </h2>
+
+              <a className="text-blue-500 hover:text-blue-600 hover:underline hover:cursor-pointer text-sm flex items-baseline">
+                <MdOutlineUploadFile className="text-blue-500 " />
+                <span className="ml-1 text-sm">Add files</span>
+              </a>
+            </header>
+
+            {/* body: list of files */}
+            <div className="overflow-auto h-[90%] border-gray-100 rounded-md border-2">
+              {files.map((file) => (
+                <Card classes={"my-1 flex items-center justify-between"}>
+                  <div className="flex items-center gap-2">
+                    <RiFileTextLine />
+                    <span className="text-xs">{file.name}</span>
+                  </div>
+                  <div className="text-sm">{file.size}</div>
+                </Card>
+              ))}
             </div>
           </Card>
         </div>

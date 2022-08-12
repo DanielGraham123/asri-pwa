@@ -45,7 +45,7 @@ export default function DashboardLayout({ children }) {
   return (
     <HeaderContext.Provider value={{ title, setTitle }}>
       <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=20%" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex h-screen overflow-hidden ">
         <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
