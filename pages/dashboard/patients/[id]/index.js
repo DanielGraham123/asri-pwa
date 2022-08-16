@@ -49,11 +49,18 @@ const files = [
     size: "25kb",
   },
 ];
+
+function getWindowSize() {
+  const { innerWidth, innerHeight } = window;
+  return { innerWidth, innerHeight };
+}
 export default function PatientID() {
+  const hasWindow = typeof window !== "undefined";
+
   const { title, setTitle } = useHeaderContext();
   const [testImg, setTestImg] = useState();
   const [note, setNote] = useState("");
-  const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [windowSize, setWindowSize] = useState(hasWindow && getWindowSize());
 
   const router = useRouter();
 
@@ -270,67 +277,64 @@ export default function PatientID() {
 
         {/* Patient Summary */}
         <div className="col-span-2 order-1 xl:order-2 xl:col-span-full">
-          <GridComponent
-            dataSource={patientSummary}
-            allowPaging={true}
-            pageSettings={{ pageSize: 7 }}
-          >
-            <ColumnsDirective>
-              {console.log("inner width: ", windowSize.innerWidth)}
-              {windowSize.innerWidth >= 1400 && (
+          <Card classes={"p-0"}>
+            <GridComponent
+              dataSource={patientSummary}
+              allowPaging={true}
+              pageSettings={{ pageSize: 7 }}
+            >
+              <ColumnsDirective>
+                {console.log("inner width: ", windowSize.innerWidth)}
+                {windowSize.innerWidth >= 1400 && (
+                  <ColumnDirective
+                    field="PatientID"
+                    headerText="Patient ID"
+                    width="100"
+                  />
+                )}
+                {windowSize.innerWidth >= 1400 && (
+                  <ColumnDirective field="Name" width="100" />
+                )}
                 <ColumnDirective
-                  field="PatientID"
-                  headerText="Patient ID"
-                  width="100"
+                  field="Gender"
+                  width={windowSize.innerWidth >= 1400 ? 60 : 100}
+                  textAlign={windowSize.innerWidth >= 1400 ? "right" : "left"}
                 />
-              )}
-              {windowSize.innerWidth >= 1400 && (
-                <ColumnDirective field="Name" width="100" />
-              )}
-              <ColumnDirective
-                field="Gender"
-                width={windowSize.innerWidth >= 1400 ? 60 : 100}
-                textAlign={windowSize.innerWidth >= 1400 ? "right" : "left"}
-              />
-              <ColumnDirective
-                field="Age"
-                width="70"
-                textAlign="left"
-                valueAccessor={formatAgeColumn}
-              />
-              <ColumnDirective
-                field="BloodType"
-                headerText="Blood Type"
-                width="0"
-                textAlign="center"
-              />
-              <ColumnDirective field="Weight" width="60" />
-              <ColumnDirective
-                field="BMI"
-                headerText="Body Mass Index"
-                width="100"
-                textAlign="center"
-              />
-              <ColumnDirective
-                field="BMIWeight"
-                headerText="BMI Weight"
-                width="100"
-                className="uppercase"
-                textAlign={windowSize.innerWidth >= 1400 ? "left" : "center"}
-                valueAccessor={formatBMIWeight}
-              />
-            </ColumnsDirective>
-            <Inject services={[Page, Sort]} />
-          </GridComponent>
+                <ColumnDirective
+                  field="Age"
+                  width="70"
+                  textAlign="left"
+                  valueAccessor={formatAgeColumn}
+                />
+                <ColumnDirective
+                  field="BloodType"
+                  headerText="Blood Type"
+                  width="0"
+                  textAlign="center"
+                />
+                <ColumnDirective field="Weight" width="60" />
+                <ColumnDirective
+                  field="BMI"
+                  headerText="Body Mass Index"
+                  width="100"
+                  textAlign="center"
+                />
+                <ColumnDirective
+                  field="BMIWeight"
+                  headerText="BMI Weight"
+                  width="100"
+                  className="uppercase"
+                  textAlign={windowSize.innerWidth >= 1400 ? "left" : "center"}
+                  valueAccessor={formatBMIWeight}
+                />
+              </ColumnsDirective>
+              <Inject services={[Page, Sort]} />
+            </GridComponent>
+          </Card>
         </div>
       </div>
     </>
   );
-}
-
-function getWindowSize() {
-  const { innerWidth, innerHeight } = window;
-  return { innerWidth, innerHeight };
 }
 
 PatientID.Layout = DashboardLayout;
