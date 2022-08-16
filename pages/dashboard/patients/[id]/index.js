@@ -135,7 +135,7 @@ export default function PatientID() {
                   className="bg-blue-600 text-white shadow-lg px-3 py-2 hover:transition-opacity hover:opacity-70 duration-300 rounded-lg mt-4 w-full"
                   onClick={() =>
                     router.push({
-                      pathname: `/patients/${id}/booklet`,
+                      pathname: `/patients/${patientData.id}/booklet`,
                       query: patientData,
                     })
                   }
