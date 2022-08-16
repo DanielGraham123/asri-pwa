@@ -269,7 +269,7 @@ export default function PatientID() {
         </div>
 
         {/* Patient Summary */}
-        <div className="col-span-2 order-1 xl:col-span-full">
+        <div className="col-span-2 order-1 xl:order-2 xl:col-span-full">
           <GridComponent
             dataSource={patientSummary}
             allowPaging={true}
