@@ -5,6 +5,12 @@ import TopLoader from "react-top-loading-bar";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import EmptyLayout from "@/layouts/emptyLayout";
+import { registerLicense } from "@syncfusion/ej2-base";
+
+// Registering Syncfusion license key
+registerLicense(
+  "ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdk1iX39ccndRQ2RcVkQ="
+);
 
 function MyApp({ Component, pageProps }) {
   const toploadingRef = useRef(null);

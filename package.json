@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@syncfusion/ej2-base": "^20.2.43",
+    "@syncfusion/ej2-react-grids": "^20.2.43",
     "@tailwindcss/line-clamp": "^0.4.0",
     "face-api.js": "^0.22.2",
     "next": "12.2.2",

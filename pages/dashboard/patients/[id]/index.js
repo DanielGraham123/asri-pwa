@@ -12,6 +12,17 @@ import moment from "moment";
 import { MdOutlineUploadFile } from "react-icons/md";
 import { RiFileTextLine } from "react-icons/ri";
 
+import patientSummary from "@/patient-summary";
+
+import {
+  ColumnDirective,
+  ColumnsDirective,
+  GridComponent,
+  Inject,
+  Page,
+  Sort,
+} from "@syncfusion/ej2-react-grids";
+
 const files = [
   {
     name: "blood tests.pdf",
@@ -42,10 +53,19 @@ export default function PatientID() {
   const { title, setTitle } = useHeaderContext();
   const [testImg, setTestImg] = useState();
   const [note, setNote] = useState("");
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
   const router = useRouter();
 
   const patientData = router.query;
+
+  const formatAgeColumn = (field, data, column) => {
+    return data[field] + "yrs";
+  };
+
+  const formatBMIWeight = (field, data, column) => {
+    return `${data[field]}`.charAt(0).toUpperCase() + `${data[field]}`.slice(1);
+  };
 
   useEffect(() => {
     setTitle(patientData?.name);
@@ -56,6 +76,18 @@ export default function PatientID() {
   useEffect(() => {
     setTestImg(patients.filter((item) => item.id === parseInt(patientData.id)));
     console.log("rec testImg: ", testImg);
+  }, []);
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
   console.log("record: ", router.query);
@@ -177,7 +209,7 @@ export default function PatientID() {
                   id="doctorNotes"
                   cols="30"
                   rows="9"
-                  className="rounded-lg w-full bg-slate-200 text-sm border-0 scrollbar-thin scrollbar-thumb-gray-400   scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+                  className="rounded-lg w-full bg-slate-200 text-sm border-0 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                   placeholder="Enter your Note here..."
                   onChange={(e) => setNote(e.target.value)}
                 ></textarea>
@@ -206,9 +238,9 @@ export default function PatientID() {
           </Card>
         </div>
 
-        {/*  */}
-        <div className="xl:col-span-1">
-          <Card classes={" h-[361px]"}>
+        {/* Patient Files and Documents */}
+        <div className="xl:col-span-1 order-2">
+          <Card classes={"h-[361px]"}>
             <header className="flex justify-between mb-3 items-baseline">
               <h2 className="font-bold">Files / Documents </h2>
 
@@ -219,7 +251,7 @@ export default function PatientID() {
             </header>
 
             {/* body: list of files */}
-            <div className="overflow-auto h-[90%] border-gray-100 rounded-md border-2">
+            <div className=" overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full border-gray-100 rounded-md border-2">
               {files.map((file, index) => (
                 <Card
                   key={file.name + "#" + index}
@@ -235,9 +267,70 @@ export default function PatientID() {
             </div>
           </Card>
         </div>
+
+        {/* Patient Summary */}
+        <div className="col-span-2 order-1 xl:col-span-full">
+          <GridComponent
+            dataSource={patientSummary}
+            allowPaging={true}
+            pageSettings={{ pageSize: 7 }}
+          >
+            <ColumnsDirective>
+              {console.log("inner width: ", windowSize.innerWidth)}
+              {windowSize.innerWidth >= 1400 && (
+                <ColumnDirective
+                  field="PatientID"
+                  headerText="Patient ID"
+                  width="100"
+                />
+              )}
+              {windowSize.innerWidth >= 1400 && (
+                <ColumnDirective field="Name" width="100" />
+              )}
+              <ColumnDirective
+                field="Gender"
+                width={windowSize.innerWidth >= 1400 ? 60 : 100}
+                textAlign={windowSize.innerWidth >= 1400 ? "right" : "left"}
+              />
+              <ColumnDirective
+                field="Age"
+                width="70"
+                textAlign="left"
+                valueAccessor={formatAgeColumn}
+              />
+              <ColumnDirective
+                field="BloodType"
+                headerText="Blood Type"
+                width="0"
+                textAlign="center"
+              />
+              <ColumnDirective field="Weight" width="60" />
+              <ColumnDirective
+                field="BMI"
+                headerText="Body Mass Index"
+                width="100"
+                textAlign="center"
+              />
+              <ColumnDirective
+                field="BMIWeight"
+                headerText="BMI Weight"
+                width="100"
+                className="uppercase"
+                textAlign={windowSize.innerWidth >= 1400 ? "left" : "center"}
+                valueAccessor={formatBMIWeight}
+              />
+            </ColumnsDirective>
+            <Inject services={[Page, Sort]} />
+          </GridComponent>
+        </div>
       </div>
     </>
   );
+}
+
+function getWindowSize() {
+  const { innerWidth, innerHeight } = window;
+  return { innerWidth, innerHeight };
 }
 
 PatientID.Layout = DashboardLayout;
