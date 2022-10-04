@@ -204,7 +204,10 @@ export default function AllAppointments() {
 
         <ul className="h-[300px] pr-3 my-2 -mr-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300">
           {upcoming.map((appt, index) => (
-            <li className={index !== upcoming.length - 1 && "mb-2"}>
+            <li
+              key={appt.name + "#" + index}
+              className={index !== upcoming.length - 1 && "mb-2"}
+            >
               <div className="rounded-lg shadow-sm border border-gray-300 py-3 px-2 relative ">
                 <div className="right-2 absolute">
                   <HiDotsHorizontal className="cursor-pointer text-gray-400" />
@@ -278,7 +281,10 @@ export default function AllAppointments() {
                   {upcoming
                     .slice(0, Math.floor(Math.random() * 4 + 1))
                     .map((appt, index) => (
-                      <li className={index !== upcoming.length - 1 && "mb-2"}>
+                      <li
+                        key={appt.name + "##" + index}
+                        className={index !== upcoming.length - 1 && "mb-2"}
+                      >
                         <div className="rounded-lg shadow-sm border border-gray-300 py-3 px-2 relative ">
                           <div className="right-2 absolute">
                             <HiDotsHorizontal className="cursor-pointer text-gray-400" />
