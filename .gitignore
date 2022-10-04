@@ -39,4 +39,4 @@ yarn-error.log*
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
 
-/pages/dashboard/index copy.js
+/pages/dashboard/index\ copy.js
