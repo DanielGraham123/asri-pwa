@@ -8,6 +8,7 @@ import idIcon from "@/assets/faceid.png";
 import { GoLinkExternal } from "react-icons/go";
 import { useTopLoader } from "@/contexts/LoadingContext";
 import Transition from "../utils/Transition";
+import LoadingSpinner from "../utils/LoadingSpinner";
 
 const Identification = () => {
   const [IdModal, setIdModal] = useState(false);
@@ -61,7 +62,7 @@ const Identification = () => {
 
   // loadModels function
   useEffect(() => {
-    setTopLoading(true);
+    // setTopLoading(true);
 
     const loadModels = () => {
       Promise.all([
@@ -256,7 +257,9 @@ const Identification = () => {
 
   // console.log("videoRef: ", videoRef.current);
 
-  return (
+  return !modelsLoaded ? (
+    <LoadingSpinner />
+  ) : (
     <div className="relative inline-flex mr">
       <button
         ref={faceIdTrigger}

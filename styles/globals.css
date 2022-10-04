@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback");
-
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback");
 
 /* Additional styles */
 @import "additional-styles/utility-patterns.css";
@@ -34,14 +35,16 @@
   }
 }
 
-@tailwind utilities;
-
 .moverflow-y-auto {
   overflow-y: auto;
 }
 
 .moverflow-x-hidden {
   overflow-x: hidden;
+}
+
+#SvgjsText1895 {
+  font-size: 14px !important;
 }
 
 @import "../node_modules/@syncfusion/ej2-base/styles/material.css";

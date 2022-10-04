@@ -4,7 +4,14 @@ import DoughnutChart from "../../charts/DoughnutChart";
 // Import utilities
 import { tailwindConfig } from "../../utils/Utils";
 
-export default function DashboardCard06() {
+const data = [
+  { name: "Cardiology", value: 30, text: "30%" },
+  { name: "Surgery", value: 21, text: "21%" },
+  { name: "Malaria", value: 10, text: "10%" },
+  { name: "Others", value: 5, text: "5%" },
+];
+
+export default function Diagnostics() {
   const chartData = {
     labels: ["Cardiology", "Surgery", "Malaria", "Others"],
     datasets: [
@@ -29,14 +36,15 @@ export default function DashboardCard06() {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white border border-slate-300 rounded-md">
+    <div className="flex flex-col bg-white w-full border-slate-300 rounded-lg shadow-md">
       {/* <header className="px-5 pt-3 border-b border-slate-100">
        
       </header> */}
-      <h2 className="font-semibold text-slate-800 px-5 py-3">Diagnostics</h2>
+      <h2 className="font-semibold text-slate-800 px-5 pt-3">Diagnostics</h2>
       {/* Chart built with Chart.js 3 */}
-      {/* Change the height attribute to adjust the chart height */}
-      <DoughnutChart data={chartData} width={250} height={150} />
+      <div className="pt-2">
+        <DoughnutChart data={chartData} width={200} height={120} />
+      </div>
     </div>
   );
 }

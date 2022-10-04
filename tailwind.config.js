@@ -6,8 +6,21 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
+      backgroundColor: {},
+      colors: {
+        sindigo: "#763CEF",
+        sblue: "#100DB1",
+        syellow: "#FECA57",
+        sred: "#F80D38",
+        examin: "#2798F7",
+        consult: "#FECA57",
+        checkup: "#F80D38",
+        visit: "#763CEF",
+        emmerg: "#039E72",
+      },
       backgroundImage: {
         bgIndex: "url('/asri-bg.jpg')",
       },
@@ -42,7 +55,7 @@ module.exports = {
         sm: "768px",
         md: "1060px",
         lg: "1200px",
-        xl: "1400px",
+        xl: "1300px",
       },
       borderWidth: {
         3: "3px",

@@ -5,13 +5,14 @@ import TopLoader from "react-top-loading-bar";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import EmptyLayout from "@/layouts/emptyLayout";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+
 import { registerLicense } from "@syncfusion/ej2-base";
 
 // Registering Syncfusion license key
 registerLicense(
-  "ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdk1iX39ccndRQ2RcVkQ="
+  "ORg4AjUWIQA/Gnt2VVhiQlFaclpJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRd0VjXX5YdXVXRWVYVEM="
 );
-
 function MyApp({ Component, pageProps }) {
   const toploadingRef = useRef(null);
   const router = useRouter();
@@ -57,12 +58,14 @@ function MyApp({ Component, pageProps }) {
   console.log("layout stuff: ", Component);
 
   return (
-    <TopLoadingProvider>
-      <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </TopLoadingProvider>
+    <ThemeProvider>
+      <TopLoadingProvider>
+        <TopLoader color="#9c2cf2" height={3} ref={toploadingRef} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </TopLoadingProvider>
+    </ThemeProvider>
   );
 }
 
