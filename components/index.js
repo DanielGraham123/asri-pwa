@@ -1,4 +1,5 @@
 export { default as SignIn } from "./SignIn";
+export { default as MobileWarning } from "./MobileWarning";
 export { default as Header } from "./Header";
 export { default as Banner } from "./Banner";
 export { default as Navbar } from "./dashboard/Navbar";
