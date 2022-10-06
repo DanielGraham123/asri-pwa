@@ -7,7 +7,7 @@ import {
   PatientOverview,
   HealthIndex,
   AllAppointments,
-  HeatMap,
+  PandemicMap,
   Datepicker,
   FilterButton,
   GreetingsArea,
@@ -41,7 +41,7 @@ export default function Index() {
             <HealthIndex />
             {/* pandemic area */}
             <div className="col-span-3">
-              <HeatMap />
+              <PandemicMap />
             </div>
             {/* growth */}
             <div className=""></div>
