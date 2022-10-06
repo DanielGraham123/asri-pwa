@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DoughnutChart from "../../charts/DoughnutChart";
 
 // import ApexCharts from "apexcharts";
@@ -25,7 +25,7 @@ import {
 } from "@syncfusion/ej2-react-maps";
 
 import { world_map } from "@/world_map";
-import { uncountries } from "@/data";
+import { covid_data } from "@/covid";
 
 // Import utilities
 import { tailwindConfig } from "../../utils/Utils";
@@ -53,6 +53,73 @@ export default function PatientOverview() {
 
   const tabs = ["All", "Cameroon", "Nigeria", "RDC", "Gabon"];
 
+  const [covidWorld, setCovidWorld] = useState([]);
+  const [affectedZones, setAffectedZones] = useState([]);
+  const [recoveredZones, setRecoveredZones] = useState([]);
+  const [dangerZones, setDangerZones] = useState([]);
+  const [safeZones, setSafeZones] = useState([]);
+  const [neutralZones, setNeutralZones] = useState([]);
+
+  let affected;
+  let recovered;
+  let dangered;
+  let safe;
+  let neutral;
+
+  useState(() => {
+    covid_data?.features.forEach((feature) => {
+      setCovidWorld((data) => [...data, feature.properties]);
+    });
+
+    affected = covid_data?.features?.filter(
+      (area) => area.properties.confirmed > 300
+    );
+
+    recovered = covid_data?.features?.filter(
+      (area) => area.properties.recovered > 300
+    );
+
+    dangered = covid_data?.features?.filter(
+      (area) => area.properties.deaths > 1000
+    );
+
+    safe = covid_data?.features?.filter(
+      (area) =>
+        area.properties.confirmed > 30 && area.properties.confirmed < 100
+    );
+
+    neutral = covid_data?.features?.filter(
+      (area) =>
+        parseInt(area.properties.confirmed) === 0 &&
+        parseInt(area.properties.deaths) === 0 &&
+        parseInt(area.properties.active) === 0
+    );
+
+    affected?.forEach((zone) => {
+      setAffectedZones((zones) => [...zones, zone.properties]);
+    });
+
+    recovered?.forEach((zone) => {
+      setRecoveredZones((zones) => [...zones, zone.properties]);
+    });
+
+    dangered?.forEach((zone) => {
+      setDangerZones((zones) => [...zones, zone.properties]);
+    });
+
+    safe?.forEach((zone) => {
+      setSafeZones((zones) => [...zones, zone.properties]);
+    });
+
+    neutral?.forEach((zone) => {
+      setNeutralZones((zones) => [...zones, zone.properties]);
+    });
+  }, []);
+
+  console.log("affected: ", neutralZones);
+
+  console.log("covid features: ", covidWorld);
+
   return (
     <div className="grid grid-cols-3 divide-x-2 gap- bg-white  border-slate-200 rounded-lg shadow-md">
       <div className="flex flex-col  col-span-2 w-full  pb-1">
@@ -69,10 +136,7 @@ export default function PatientOverview() {
                 <LayersDirective>
                   <LayerDirective
                     shapeData={world_map}
-                    tooltipSettings={{
-                      visible: true,
-                      valuePath: "name",
-                    }}
+                    shapeDataPath="name"
                     shapeSettings={{
                       fill: "#C8D7EC",
                     }}
@@ -85,45 +149,75 @@ export default function PatientOverview() {
                         shape="Circle"
                         opacity={0.6}
                         width={5}
-                        colorValuePath={"color"}
-                        dataSource={[
-                          {
-                            latitude: 37.0,
-                            longitude: -120.0,
-                            city: "California",
-                            color: "yellow",
-                          },
-                          {
-                            latitude: 40.7127,
-                            longitude: -74.0059,
-                            city: "New York",
-                            color: "yellow",
-                          },
-                          {
-                            latitude: 42,
-                            longitude: -93,
-                            city: "Iowa",
-                            color: "yellow",
-                          },
-                          {
-                            latitude: 19.228825,
-                            longitude: 72.854118,
-                            name: "Mumbai",
-                            color: "blue",
-                          },
-                          {
-                            latitude: 28.610001,
-                            longitude: 77.230003,
-                            name: "Delhi",
-                            color: "blue",
-                          },
-                          {
-                            latitude: 13.067439,
-                            longitude: 80.237617,
-                            name: "Chennai",
-                            color: "blue",
-                          },
-                        ]}
+                        fill="#DB6784"
+                        dataSource={affectedZones}
+                        tooltipSettings={{
+                          visible: true,
+                          valuePath: "name",
+                          fill: "#B06A9C",
+                        }}
+                      ></MarkerDirective>
+                      <MarkerDirective
+                        visible={true}
+                        height={20}
+                        animationDuration={0}
+                        shape="Circle"
+                        opacity={0.6}
+                        width={5}
+                        fill="#403DC1"
+                        dataSource={recoveredZones}
+                        tooltipSettings={{
+                          visible: true,
+                          valuePath: "name",
+                          fill: "#403dc1",
+                        }}
+                      ></MarkerDirective>
+                      <MarkerDirective
+                        visible={true}
+                        height={20}
+                        animationDuration={0}
+                        shape="Circle"
+                        opacity={0.8}
+                        width={5}
+                        fill="#F93E5F"
+                        dataSource={dangerZones}
+                        tooltipSettings={{
+                          visible: true,
+                          valuePath: "deaths",
+                          fill: "#F93E5F",
+                          format: "${deaths} deaths",
+                        }}
+                      ></MarkerDirective>
+                      <MarkerDirective
+                        visible={true}
+                        height={20}
+                        animationDuration={0}
+                        shape="Circle"
+                        opacity={0.8}
+                        width={5}
+                        fill="#02B352"
+                        dataSource={safeZones}
+                        tooltipSettings={{
+                          visible: true,
+                          valuePath: "confirmed",
+                          fill: "#02B352",
+                          format: "${name}: ${confirmed} cases",
+                        }}
+                      ></MarkerDirective>
+                      <MarkerDirective
+                        visible={true}
+                        height={20}
+                        animationDuration={0}
+                        shape="Circle"
+                        opacity={0.8}
+                        width={5}
+                        fill="#FECC54"
+                        dataSource={neutralZones}
+                        tooltipSettings={{
+                          visible: true,
+                          valuePath: "name",
+                          fill: "#FECC54",
+                        }}
                       ></MarkerDirective>
                     </MarkersDirective>
                   </LayerDirective>
