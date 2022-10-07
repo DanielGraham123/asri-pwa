@@ -12,7 +12,7 @@ export { default as PatientOverview } from "./dashboard/boxes/PatientOverview";
 export { default as HealthIndex } from "./dashboard/boxes/HealthIndex";
 export { default as AllAppointments } from "./dashboard/boxes/AllAppointments";
 export { default as PandemicMap } from "./dashboard/boxes/PandemicMap";
-export { default as DashboardCard06 } from "./dashboard/boxes/DashboardCard06";
+export { default as PatientsTable } from "./dashboard/boxes/PatientsTable";
 export { default as DashboardCard07 } from "./dashboard/boxes/DashboardCard07";
 export { default as DashboardCard08 } from "./dashboard/boxes/DashboardCard08";
 export { default as DashboardCard09 } from "./dashboard/boxes/DashboardCard09";

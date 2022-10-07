@@ -29,6 +29,8 @@ import {
 import { world_map } from "@/world_map";
 import { covid_data } from "@/covid";
 
+import { classNames } from "../../utils/Utils";
+
 // Import utilities
 import { tailwindConfig } from "../../utils/Utils";
 
@@ -38,10 +40,6 @@ const data = [
   { name: "Malaria", value: 10, text: "10%" },
   { name: "Others", value: 5, text: "5%" },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function PatientOverview() {
   const palettes = [
@@ -481,39 +479,49 @@ export default function PatientOverview() {
 
       <div className="py-12 px-8 grid grid-rows-5 gap-2">
         <div className="">
-          <h2 className="uppercase text-md font-bold mb-1">Recovery Zones</h2>
+          <h2 className="uppercase text-md font-bold mb-1 tracking-wide">
+            Recovery Zones
+          </h2>
           <h4 className="uppercase text-[#403DC1] font-bold">
             {kFormatter(recoveredZones.length * 1000000)}
           </h4>
-          <hr class="w-2/6 h-px border-[#403DC1] border-2" />
+          <hr className="w-2/6 h-px border-[#403DC1] border-2" />
         </div>
         <div className="">
-          <h2 className="uppercase text-md font-bold mb-1">Neutral Zones</h2>
+          <h2 className="uppercase text-md font-bold mb-1 tracking-wide">
+            Neutral Zones
+          </h2>
           <h4 className="uppercase text-[#FECC54] font-bold">
             {kFormatter(neutralZones.length * 1000)}
           </h4>
-          <hr class="w-2/6 h-px border-[#FECC54] border-2" />
+          <hr className="w-2/6 h-px border-[#FECC54] border-2" />
         </div>
         <div className="">
-          <h2 className="uppercase text-md font-bold mb-1">Affected Zones</h2>
+          <h2 className="uppercase text-md font-bold mb-1 tracking-wide">
+            Affected Zones
+          </h2>
           <h4 className="uppercase text-[#DB6784] opacity-60 font-bold">
             {kFormatter(affectedZones.length * 1000000)}
           </h4>
-          <hr class="w-2/6 h-px opacity-60 border-[#DB6784] border-2" />
+          <hr className="w-2/6 h-px opacity-60 border-[#DB6784] border-2" />
         </div>
         <div className="">
-          <h2 className="uppercase text-md font-bold mb-1">Danger Zones</h2>
+          <h2 className="uppercase text-md font-bold mb-1 tracking-wide">
+            Danger Zones
+          </h2>
           <h4 className="uppercase text-[#F93E5F] font-bold">
             {kFormatter(dangerZones.length * 100000)}
           </h4>
-          <hr class="w-2/6 h-px border-[#F93E5F] border-2" />
+          <hr className="w-2/6 h-px border-[#F93E5F] border-2" />
         </div>
         <div className="">
-          <h2 className="uppercase text-md font-bold mb-1">Safe Zones</h2>
+          <h2 className="uppercase text-md font-bold mb-1 tracking-wide">
+            Safe Zones
+          </h2>
           <h4 className="uppercase text-[#02B352] font-bold">
             {kFormatter(safeZones.length * 1000)}
           </h4>
-          <hr class="w-2/6 h-px border-[#02B352] border-2" />
+          <hr className="w-2/6 h-px border-[#02B352] border-2" />
         </div>
       </div>
     </div>

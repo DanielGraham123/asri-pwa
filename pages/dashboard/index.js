@@ -11,7 +11,7 @@ import {
   Datepicker,
   FilterButton,
   GreetingsArea,
-  WelcomeBanner,
+  PatientsTable,
 } from "@/components/index";
 export default function Index() {
   const { title, setTitle } = useHeaderContext();
@@ -43,10 +43,10 @@ export default function Index() {
             <div className="col-span-3">
               <PandemicMap />
             </div>
-            {/* growth */}
-            <div className=""></div>
             {/* Patients table */}
-            {/* <div className="col-span-2"></div> */}
+            <div className="col-span-3">
+              <PatientsTable />
+            </div>
           </div>
         </div>
 

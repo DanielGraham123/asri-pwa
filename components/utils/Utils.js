@@ -36,3 +36,7 @@ export function kFormatter(num) {
     ? Math.sign(num) * (Math.abs(num) / 1000000).toFixed(1) + "m"
     : Math.sign(num) * Math.abs(num);
 }
+
+export function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
