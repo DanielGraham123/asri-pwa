@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^1.0.6",
     "@syncfusion/ej2-base": "^20.2.45",
     "@syncfusion/ej2-react-buttons": "^20.2.45",
     "@syncfusion/ej2-react-charts": "^20.2.45",
