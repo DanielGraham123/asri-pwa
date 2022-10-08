@@ -22,6 +22,7 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { classNames } from "./utils/Utils";
 import Image from "next/image";
 import logo from "@/icon-192x192.png";
+import Link from "next/link";
 
 const stats = [
   { label: "Founded", value: "2021" },
@@ -213,16 +214,18 @@ function Landing() {
         <Popover className="fixed z-10 w-full bg-[#0F172A]">
           <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
             <div className="flex justify-start items-center lg:w-0 lg:flex-1">
-              <a href="#">
-                <span className="sr-only">Workflow</span>
-                <Image
-                  className="h-8 w-auto sm:h-10"
-                  src={logo}
-                  width={50}
-                  height={50}
-                  alt=""
-                />
-              </a>
+              <Link href="#">
+                <div>
+                  <span className="sr-only">Workflow</span>
+                  <Image
+                    className="h-8 w-auto sm:h-10"
+                    src={logo}
+                    width={50}
+                    height={50}
+                    alt="A.S.R.I. logo"
+                  />
+                </div>
+              </Link>
               <h1 className="ml-3 text-3xl text-indigo-100 font-bold">
                 A.S.R.I.
               </h1>
@@ -266,26 +269,24 @@ function Landing() {
                         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                           <div className="relative grid gap-6 bg-[#0F172A] px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                             {solutions.map((item) => (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                className="-m-3 p-3 flex items-start rounded-lg hover:shadow-md hover:border-slate-500 hover:border-2"
-                              >
-                                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white sm:h-12 sm:w-12">
-                                  <item.icon
-                                    className="h-6 w-6"
-                                    aria-hidden="true"
-                                  />
+                              <Link key={item.name} href={item.href}>
+                                <div className="-m-3 p-3 flex items-start rounded-lg hover:shadow-md hover:border-slate-500 hover:border-2">
+                                  <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white sm:h-12 sm:w-12">
+                                    <item.icon
+                                      className="h-6 w-6"
+                                      aria-hidden="true"
+                                    />
+                                  </div>
+                                  <div className="ml-4">
+                                    <p className="text-base font-medium text-indigo-500">
+                                      {item.name}
+                                    </p>
+                                    <p className="mt-1 text-sm text-gray-400">
+                                      {item.description}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div className="ml-4">
-                                  <p className="text-base font-medium text-indigo-500">
-                                    {item.name}
-                                  </p>
-                                  <p className="mt-1 text-sm text-gray-400">
-                                    {item.description}
-                                  </p>
-                                </div>
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
@@ -295,38 +296,36 @@ function Landing() {
                 )}
               </Popover>
 
-              <a
-                href="#"
-                className="text-base font-medium text-gray-200 hover:text-indigo-500"
-              >
-                Pricing
-              </a>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-200 hover:text-indigo-500"
-              >
-                Partners
-              </a>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-200 hover:text-indigo-500"
-              >
-                Company
-              </a>
+              <Link href="#">
+                <span className="text-base font-medium text-gray-200 hover:text-indigo-500">
+                  Pricing
+                </span>
+              </Link>
+              <Link href="#">
+                <span className="text-base font-medium text-gray-200 hover:text-indigo-500">
+                  Partners
+                </span>
+              </Link>
+              <Link href="#">
+                <span className="text-base font-medium text-gray-200 hover:text-indigo-500">
+                  Company
+                </span>
+              </Link>
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <a
-                href="/signin"
-                className="whitespace-nowrap text-base font-medium text-gray-200 hover:text-indigo-500"
-              >
-                Sign in
-              </a>
-              <a
-                href="#"
-                className="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700"
-              >
-                Sign up
-              </a>
+              <Link href="/signin">
+                <span
+                  className="whitespace-nowrap text-base font-medium text-gray-200
+                hover:text-indigo-500"
+                >
+                  Sign in
+                </span>
+              </Link>
+              <Link href="#">
+                <span className="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
+                  Sign up
+                </span>
+              </Link>
             </div>
           </div>
 
@@ -363,55 +362,52 @@ function Landing() {
                   <div className="mt-6">
                     <nav className="grid grid-cols-1 gap-7">
                       {solutions.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50"
-                        >
-                          <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-                            <item.icon className="h-6 w-6" aria-hidden="true" />
+                        <Link key={item.name} href={item.href}>
+                          <div className="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                            <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+                              <item.icon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <div className="ml-4 text-base font-medium text-gray-900">
+                              {item.name}
+                            </div>
                           </div>
-                          <div className="ml-4 text-base font-medium text-gray-900">
-                            {item.name}
-                          </div>
-                        </a>
+                        </Link>
                       ))}
                     </nav>
                   </div>
                 </div>
                 <div className="py-6 px-5">
                   <div className="grid grid-cols-2 gap-4">
-                    <a
-                      href="#"
-                      className="text-base font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      Pricing
-                    </a>
-                    <a
-                      href="#"
-                      className="text-base font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      Partners
-                    </a>
-                    <a
-                      href="#"
-                      className="text-base font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      Company
-                    </a>
+                    <Link href="#">
+                      <span className="text-base font-medium text-gray-900 hover:text-gray-700">
+                        Pricing
+                      </span>
+                    </Link>
+                    <Link href="#">
+                      <span className="text-base font-medium text-gray-900 hover:text-gray-700">
+                        Partners
+                      </span>
+                    </Link>
+                    <Link href="#">
+                      <span className="text-base font-medium text-gray-900 hover:text-gray-700">
+                        Company
+                      </span>
+                    </Link>
                   </div>
                   <div className="mt-6">
-                    <a
-                      href="#"
-                      className="w-full flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700"
-                    >
-                      Sign up
-                    </a>
+                    <Link href="#">
+                      <span className="w-full flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
+                        Sign up
+                      </span>
+                    </Link>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?
-                      <a href="#" className="text-gray-900">
-                        Sign in
-                      </a>
+                      <Link href="#">
+                        <span className="text-gray-900"> Sign in</span>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -448,18 +444,16 @@ function Landing() {
                 </p>
                 <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                   <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-                    <a
-                      href="/signin"
-                      className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8"
-                    >
-                      Get started
-                    </a>
-                    <a
-                      href="/signin"
-                      className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8"
-                    >
-                      Live demo
-                    </a>
+                    <Link href="/signin">
+                      <span className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                        Get started
+                      </span>
+                    </Link>
+                    <Link href="/signin">
+                      <span className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8">
+                        Live demo
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -541,12 +535,11 @@ function Landing() {
                       pharetra.
                     </p>
                     <div className="mt-6">
-                      <a
-                        href="#"
-                        className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
-                      >
-                        Get started
-                      </a>
+                      <Link href="#">
+                        <span className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700">
+                          Get started
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -611,12 +604,11 @@ function Landing() {
                       pharetra.
                     </p>
                     <div className="mt-6">
-                      <a
-                        href="#"
-                        className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
-                      >
-                        Get started
-                      </a>
+                      <Link href="#">
+                        <span className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700">
+                          Get started
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -882,36 +874,29 @@ function Landing() {
           >
             {footerNavigation.main.map((item) => (
               <div key={item.name} className="px-5 py-2">
-                <a
-                  href={item.href}
-                  className="text-base text-gray-400 hover:text-gray-300"
-                >
-                  {item.name}
-                </a>
+                <Link href={item.href}>
+                  <span className="text-base text-gray-400 hover:text-gray-300">
+                    {item.name}
+                  </span>
+                </Link>
               </div>
             ))}
           </nav>
           <div className="mt-8 flex justify-center space-x-6">
             {footerNavigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-400 hover:text-gray-300"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
+              <Link key={item.name} href={item.href}>
+                <span className="text-gray-400 hover:text-gray-300">
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon className="h-6 w-6" aria-hidden="true" />
+                </span>
+              </Link>
             ))}
           </div>
           <p className="mt-8 text-center text-base text-gray-400">
             &copy; 2022 A.S.R.I., Powered by{" "}
-            <a
-              href="https://mettrix.net/"
-              target="_blank"
-              className="font-bold"
-            >
-              Mettrix
-            </a>{" "}
+            <Link href="https://mettrix.net/" passHref>
+              <span className="font-bold">Mettrix</span>
+            </Link>{" "}
             ltd.
           </p>
         </div>
