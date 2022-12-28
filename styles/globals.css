@@ -11,6 +11,8 @@
 @import "additional-styles/flatpickr.css";
 @import "additional-styles/theme.css";
 
+@import "fabstyles.css";
+
 @layer base {
   body {
     @apply bg-gray-100;

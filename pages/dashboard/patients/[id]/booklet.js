@@ -5,17 +5,13 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Chrono } from "react-chrono";
 
 import patientHistory from "@/patient-history";
-import { tailwindConfig } from "@/components/utils/Utils";
+import { classNames, tailwindConfig } from "@/components/utils/Utils";
 
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
 
 import { CgProfile } from "react-icons/cg";
 import Moment from "react-moment";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Booklet() {
   const { title, setTitle } = useHeaderContext();
