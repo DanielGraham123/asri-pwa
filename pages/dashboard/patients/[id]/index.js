@@ -13,6 +13,10 @@ import { MdOutlineUploadFile } from "react-icons/md";
 import { RiFileTextLine } from "react-icons/ri";
 
 import patientSummary from "@/patient-summary";
+import { FcAbout, FcBusinessman, FcCamera, FcFullTrash } from "react-icons/fc";
+import { IoMdCall } from "react-icons/io"
+import { FaTelegram } from "react-icons/fa"
+import ChatBot from 'react-simple-chatbot';
 
 import {
   ColumnDirective,
@@ -22,6 +26,10 @@ import {
   Page,
   Sort,
 } from "@syncfusion/ej2-react-grids";
+import TelegramFAB from "@/components/TelegramFAB";
+
+import Profile from "@/assets/user-36-02.jpg";
+
 
 const files = [
   {
@@ -49,6 +57,48 @@ const files = [
     size: "25kb",
   },
 ];
+
+const steps = [
+  {
+    id: '0',
+    message: 'Hey Geek!',
+
+    // This calls the next id
+    // i.e. id 1 in this case
+    trigger: '1',
+  }, {
+    id: '1',
+
+    // This message appears in
+    // the bot chat bubble
+    message: 'Please write your username',
+    trigger: '2'
+  }, {
+    id: '2',
+
+    // Here we want the user
+    // to enter input
+    user: true,
+    trigger: '3',
+  }, {
+    id: '3',
+    message: " hi {previousValue}, how can I help you?",
+    trigger: 4
+  }, {
+    id: '4',
+    options: [
+
+      // When we need to show a number of
+      // options to choose we create alist
+      // like this
+      { value: 1, label: 'View Courses' },
+      { value: 2, label: 'Read Articles' },
+
+    ],
+    end: true
+  }
+];
+
 
 function getWindowSize() {
   const { innerWidth, innerHeight } = window;
@@ -99,6 +149,19 @@ export default function PatientID() {
 
   console.log("record: ", router.query);
 
+  const actions = [
+    { label: "About", icon: <FcAbout />, onClick: console.log },
+    { label: "Profile", icon: <FcBusinessman />, onClick: console.log },
+    { label: "Picture", icon: <FcCamera />, onClick: console.log },
+    { label: "Trash", icon: <FcFullTrash />, onClick: console.log },
+  ];
+
+  // Set some properties of the bot
+  const config = {
+    botAvatar: "@/assets/user-36-02.jpg",
+    floating: true,
+  };
+
   return (
     <>
       <Head>
@@ -114,9 +177,9 @@ export default function PatientID() {
                 <div className="py-2 text-lg font-bold">
                   {patientData?.name}
                 </div>
-                <p className="tracking-wide text-gray-500 text-md">
-                  {patientData?.phone}
-                </p>
+                <a href="https://t.me/enow9315" target="_blank" className="tracking-wide text-gray-500 text-md items-center">
+                  <FaTelegram size={23} className="inline-block mb-1 text-blue-400" />{patientData?.phone}
+                </a>
               </div>
 
               <div className="text-center">
@@ -333,6 +396,20 @@ export default function PatientID() {
           </Card>
         </div>
       </div>
+
+      {/* Telegram FAB */}
+      {/* <TelegramFAB actions={actions} /> */}
+
+      {/* ChatBot */}
+      <ChatBot
+
+        // This appears as the header
+        // text for the chat bot
+        headerTitle={"To: " + patientData?.name}
+        steps={steps}
+        {...config}
+
+      />
     </>
   );
 }

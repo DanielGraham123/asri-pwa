@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import DashboardLayout, { useHeaderContext } from "@/layouts/dashboardLayout";
 import Head from "next/head";
 
-import { FcAbout, FcBusinessman, FcCamera, FcFullTrash } from "react-icons/fc";
 
 import {
   Diagnostics,
@@ -25,12 +24,7 @@ export default function Index() {
     console.log("title: ", title);
   }, []);
 
-  const actions = [
-    { label: "About", icon: <FcAbout />, onClick: console.log },
-    { label: "Profile", icon: <FcBusinessman />, onClick: console.log },
-    { label: "Picture", icon: <FcCamera />, onClick: console.log },
-    { label: "Trash", icon: <FcFullTrash />, onClick: console.log },
-  ];
+
 
   return (
     <>
@@ -70,8 +64,7 @@ export default function Index() {
       {/* Cards */}
       <div className="grid grid-cols-12 gap-6"></div>
 
-      {/* Telegram FAB */}
-      <TelegramFAB actions={actions}/>
+
     </>
   );
 }
