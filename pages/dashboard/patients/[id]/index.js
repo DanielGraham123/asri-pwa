@@ -17,6 +17,7 @@ import { FcAbout, FcBusinessman, FcCamera, FcFullTrash } from "react-icons/fc";
 import { IoMdCall } from "react-icons/io"
 import { FaTelegram } from "react-icons/fa"
 import ChatBot from 'react-simple-chatbot';
+import styled from 'styled-components'
 
 import {
   ColumnDirective,
